@@ -4,30 +4,16 @@ import Button from '../common/Button'
 import { heroContent, navLinks } from '../../data/landingContent'
 
 const LanguageToggle = ({ className }) => (
-  <button
-    type="button"
-    aria-label="Switch language"
+  <div
     className={clsx(
-      'group flex items-center gap-2 rounded-full border border-peren-ink/30 px-4 py-2 text-micro font-medium tracking-[0.3em] text-peren-ink transition-all duration-300 hover:border-peren-ink hover:text-peren-midnight',
+      'inline-flex items-center gap-2 rounded-full border border-peren-ink/30 bg-white/90 px-3 py-1 text-micro font-medium uppercase tracking-[0.3em]',
       className
     )}
   >
-    <span className="transition-colors duration-300 group-hover:text-peren-sun">EN</span>
-    <svg
-      viewBox="0 0 10 6"
-      className="h-[6px] w-[10px] text-current transition-all duration-300 group-hover:translate-y-0.5 group-hover:text-peren-sun"
-      aria-hidden
-    >
-      <path
-        d="M1 1.25L5 4.75L9 1.25"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-    </svg>
-  </button>
+    <span>EN</span>
+    <span className="block h-3 w-px bg-peren-ink/40" />
+    <span>FR</span>
+  </div>
 )
 
 const LogoMark = () => (
@@ -43,15 +29,13 @@ const LogoMark = () => (
 const Header = () => (
   <header className="relative z-10 pt-10 pb-6 text-white" id="top">
     <Container className="relative">
-      <div className="absolute right-0 top-0">
-        <LanguageToggle />
-      </div>
+      <LanguageToggle className="absolute right-0 top-[-20px]" />
       <div className="flex items-center gap-6 rounded-[62px] bg-peren-ink px-10 py-5 shadow-card">
         <div className="-ml-4">
           <LogoMark />
         </div>
         <nav
-          className="ml-auto flex items-center gap-8 text-micro uppercase tracking-[0.7em]"
+          className="ml-auto flex items-center gap-6 text-[0.5rem] uppercase tracking-[0.6em]"
           aria-label="Primary navigation"
         >
           {navLinks.map((item) => (
