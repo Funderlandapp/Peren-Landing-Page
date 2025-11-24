@@ -8,16 +8,14 @@ const LanguageToggle = ({ className }) => (
     type="button"
     aria-label="Switch language"
     className={clsx(
-      'flex items-center gap-2 text-micro font-medium uppercase tracking-[0.4em] text-peren-ink',
+      'flex items-center gap-3 text-micro font-medium uppercase tracking-[0.4em] text-peren-ink',
       className
     )}
   >
     <span>EN</span>
-    <svg
-      viewBox="0 0 10 6"
-      className="h-[6px] w-[10px] text-peren-ink"
-      aria-hidden
-    >
+    <span className="block h-3 w-px bg-peren-ink/40" />
+    <span>FR</span>
+    <svg viewBox="0 0 10 6" className="h-[6px] w-[10px] text-peren-ink" aria-hidden>
       <path
         d="M1 1.25L5 4.75L9 1.25"
         stroke="currentColor"
