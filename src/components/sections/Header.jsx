@@ -48,7 +48,7 @@ const Header = () => {
   return (
     <header className="relative z-10 pt-10 pb-6 text-white" id="top">
       <Container className="relative">
-        <LanguageToggle className="absolute right-10 top-[-32px]" />
+      <LanguageToggle className="absolute right-16 top-[-24px]" />
         <div className="relative flex items-center gap-6 rounded-[62px] bg-peren-ink px-10 py-5 shadow-card">
           <div className="-ml-4">
             <LogoMark />
