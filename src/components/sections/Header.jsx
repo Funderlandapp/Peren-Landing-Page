@@ -7,7 +7,7 @@ const LanguageToggle = () => (
   <button
     type="button"
     aria-label="Switch language"
-    className="group flex items-center gap-2 rounded-full border border-white/40 px-4 py-2 text-body-sm font-medium tracking-[0.3em] text-white transition-colors duration-300 hover:border-white hover:text-peren-sun"
+    className="group flex items-center gap-2 rounded-full border border-white/40 px-4 py-2 text-micro font-medium tracking-[0.3em] text-white transition-all duration-300 hover:border-white hover:text-peren-sun"
   >
     <span className="transition-colors duration-300 group-hover:text-peren-sun">EN</span>
     <svg
@@ -28,22 +28,22 @@ const LanguageToggle = () => (
 )
 
 const LogoMark = () => (
-  <div className="flex items-center gap-3">
+  <div className="flex items-center gap-4">
     <div className="relative flex items-center justify-center">
-      <span className="absolute h-10 w-10 rounded-full border-2 border-white"></span>
-      <span className="relative ml-5 inline-flex h-10 w-10 rounded-full bg-white"></span>
+      <span className="absolute inline-flex h-10 w-10 rounded-full border-[3px] border-white/80"></span>
+      <span className="relative ml-6 inline-flex h-10 w-10 rounded-full bg-white"></span>
     </div>
-    <span className="text-body-sm font-semibold tracking-[0.7em] text-peren-white">PEREN AI</span>
+    <span className="text-micro font-semibold tracking-[0.7em] text-peren-white">PEREN AI</span>
   </div>
 )
 
-const Header = () => {
-  return (
-    <header className="relative z-10 pt-6 pb-4 text-white" id="top">
-      <Container className="flex items-center justify-between gap-6 rounded-[62px] bg-peren-ink px-6 py-4">
+const Header = () => (
+  <header className="relative z-10 pt-10 pb-6 text-white" id="top">
+    <Container>
+      <div className="flex items-center gap-6 rounded-[62px] bg-peren-ink px-8 py-5 shadow-card">
         <LogoMark />
         <nav
-          className="flex flex-1 flex-wrap items-center justify-center gap-6 text-body-sm"
+          className="mx-auto hidden items-center gap-8 text-micro uppercase tracking-[0.4em] md:flex"
           aria-label="Primary navigation"
         >
           {navLinks.map((item) => (
@@ -62,10 +62,10 @@ const Header = () => {
           <LanguageToggle />
           <Button className="hidden px-6 py-2 md:inline-flex">{heroContent.cta}</Button>
         </div>
-      </Container>
-    </header>
-  )
-}
+      </div>
+    </Container>
+  </header>
+)
 
 export default Header
 

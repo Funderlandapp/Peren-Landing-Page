@@ -1,5 +1,4 @@
 import Container from '../layout/Container'
-import Button from '../common/Button'
 import { newsHighlight } from '../../data/landingContent'
 
 const NewsHighlight = () => (
@@ -16,9 +15,9 @@ const NewsHighlight = () => (
           <p className="text-body-md uppercase tracking-[0.3em]">{newsHighlight.label}</p>
           <h3 className="text-display-sm font-normal">{newsHighlight.title}</h3>
           <p className="whitespace-pre-line text-body-md leading-relaxed">{newsHighlight.body}</p>
-          <Button as="a" href="#blog" variant="secondary" className="px-8 py-3 text-peren-midnight">
+          <a className="text-body-md font-semibold underline-offset-4 hover:underline" href="#blog">
             {newsHighlight.linkLabel}
-          </Button>
+          </a>
         </div>
       </div>
     </Container>

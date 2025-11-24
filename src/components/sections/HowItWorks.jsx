@@ -3,9 +3,9 @@ import Button from '../common/Button'
 import { howItWorks } from '../../data/landingContent'
 
 const StepRow = ({ id, title, description }) => (
-  <li className="flex flex-col gap-2 rounded-22 border border-peren-ink/10 bg-white/80 px-5 py-4 shadow-card backdrop-blur">
-    <span className="text-eyebrow font-semibold tracking-[0.2em] text-peren-midnight">{id}</span>
-    <p className="text-kicker font-normal text-peren-midnight">{title}</p>
+  <li className="flex flex-col gap-2 rounded-22 border border-peren-ink/15 bg-white/80 px-6 py-5 shadow-card backdrop-blur">
+    <span className="text-eyebrow font-semibold tracking-[0.3em] text-peren-midnight">{id}</span>
+    <p className="text-kicker font-normal text-peren-midnight whitespace-pre-line">{title}</p>
     <p className="text-body-md text-peren-midnight/80">{description}</p>
   </li>
 )

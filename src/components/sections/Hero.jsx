@@ -2,25 +2,12 @@ import Container from '../layout/Container'
 import Button from '../common/Button'
 import { heroContent } from '../../data/landingContent'
 
-const Hero = () => {
-  return (
-    <section className="pt-section pb-section-sm" id="hero">
-      <Container className="grid gap-8 lg:grid-cols-[0.9fr,1.1fr]">
-        <div className="relative overflow-hidden rounded-[60px] bg-peren-hero px-8 py-12 text-peren-ink shadow-card">
-          <div className="space-y-6">
-            <h1 className="text-display font-normal tracking-[0.08em]">
-              {heroContent.title.split('\n').map((line) => (
-                <span key={line} className="block">
-                  {line}
-                </span>
-              ))}
-            </h1>
-            <p className="text-body-md text-peren-midnight">{heroContent.subtitle}</p>
-            <Button className="px-8 py-3">{heroContent.cta}</Button>
-          </div>
-        </div>
-        <div className="flex flex-col gap-6">
-          <div className="overflow-hidden rounded-pill bg-gradient-to-r from-peren-sun to-peren-lilac">
+const Hero = () => (
+  <section className="pb-section-sm pt-section" id="hero">
+    <Container>
+      <div className="overflow-hidden rounded-t-[210px] rounded-b-[60px] bg-peren-hero px-6 pb-10 pt-12 text-peren-ink shadow-card lg:px-10">
+        <div className="flex flex-col gap-10 lg:flex-row">
+          <div className="flex-1 overflow-hidden rounded-[60px] bg-white/50">
             <img
               src={heroContent.image.src}
               alt={heroContent.image.alt}
@@ -28,14 +15,25 @@ const Hero = () => {
               loading="eager"
             />
           </div>
-          <div className="rounded-46 border border-peren-ink/10 bg-white/80 px-6 py-5 text-body-sm text-peren-midnight backdrop-blur">
-            Join the +100 users for the pilot
+          <div className="flex max-w-[360px] flex-col gap-6">
+            <h1 className="text-display font-normal tracking-[0.08em]">
+              {heroContent.title.split('\n').map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </h1>
+            <p className="text-body-md text-peren-midnight whitespace-pre-line">{heroContent.subtitle}</p>
+            <Button className="px-8 py-3">{heroContent.cta}</Button>
           </div>
         </div>
-      </Container>
-    </section>
-  )
-}
+      </div>
+      <div className="mt-6 rounded-46 border border-peren-ink px-6 py-4 text-body-md font-medium text-peren-ink">
+        Join the +100 users for the pilot
+      </div>
+    </Container>
+  </section>
+)
 
 export default Hero
 

@@ -7,7 +7,7 @@ export const navLinks = [
 
 export const heroContent = {
   title: 'Define\nyour future health now.',
-  subtitle: 'AI Powered. Science Driven. Human Centred.',
+  subtitle: 'AI Powered.\nScience Driven.\nHuman Centred.',
   cta: 'Join the waiting list',
   image: {
     src: '/assets/hero-clinic-2x.png',
@@ -18,25 +18,25 @@ export const heroContent = {
 export const valueTiles = [
   {
     id: 'age',
-    title: 'AGE WELL',
+    title: 'AGE\nWELL',
     description: 'Maintain health, vitality, and longevity',
     image: '/assets/value-age-visual.png',
   },
   {
     id: 'perform',
-    title: 'PERFORM BETTER',
+    title: 'PERFORM\nBETTER',
     description: 'Optimize energy, focus, and resilience',
     image: '/assets/value-perform-visual.png',
   },
   {
     id: 'balance',
-    title: 'BALANCE MIND & BODY',
+    title: 'BALANCE\nMIND & BODY',
     description: 'Support emotional harmony and recovery',
     image: '/assets/value-balance-visual.png',
   },
   {
     id: 'sync',
-    title: 'SYNC CYCLE',
+    title: 'SYNC\nCYCLE',
     description: 'Align daily rhythms and hormonal balance',
     image: '/assets/value-sync-visual.png',
   },
@@ -73,18 +73,18 @@ export const howItWorks = {
   steps: [
     {
       id: '01',
-      title: 'Scan Your Body',
+      title: 'Scan\nYour Body',
       description: 'See how it performs now. Discover your Body Age and Health profile.',
     },
     {
       id: '02',
-      title: 'Simulate Interventions',
+      title: 'Simulate\nInterventions',
       description:
         'Run AI-powered simulations on sleep, nutrition, training, and recovery to map future outcomes.',
     },
     {
       id: '03',
-      title: 'Stay in Sync',
+      title: 'Stay in\nSync',
       description: 'Align daily rhythms with adaptive protocols and continuous insights from your twin.',
     },
   ],
