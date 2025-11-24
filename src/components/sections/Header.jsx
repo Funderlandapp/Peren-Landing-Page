@@ -51,7 +51,7 @@ const Header = () => (
           <LogoMark />
         </div>
         <nav
-          className="mx-auto flex flex-wrap items-center gap-10 text-micro uppercase tracking-[0.7em]"
+          className="ml-auto flex items-center gap-8 text-micro uppercase tracking-[0.7em]"
           aria-label="Primary navigation"
         >
           {navLinks.map((item) => (
