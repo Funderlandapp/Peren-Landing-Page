@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import Container from '../layout/Container'
-import Button from '../common/Button'
-import { heroContent, navLinks } from '../../data/landingContent'
+import { navLinks } from '../../data/landingContent'
 
 const LanguageToggle = ({ className }) => (
   <button
@@ -64,9 +63,6 @@ const Header = () => (
             </a>
           ))}
         </nav>
-        <div className="flex items-center gap-3">
-          <Button className="hidden px-6 py-2 md:inline-flex">{heroContent.cta}</Button>
-        </div>
       </div>
     </Container>
   </header>
