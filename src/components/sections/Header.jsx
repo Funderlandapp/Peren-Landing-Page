@@ -3,16 +3,19 @@ import Container from '../layout/Container'
 import Button from '../common/Button'
 import { heroContent, navLinks } from '../../data/landingContent'
 
-const LanguageToggle = () => (
+const LanguageToggle = ({ className }) => (
   <button
     type="button"
     aria-label="Switch language"
-    className="group flex items-center gap-2 rounded-full border border-white/40 px-4 py-2 text-micro font-medium tracking-[0.3em] text-white transition-all duration-300 hover:border-white hover:text-peren-sun"
+    className={clsx(
+      'group flex items-center gap-2 rounded-full border border-peren-ink/30 px-4 py-2 text-micro font-medium tracking-[0.3em] text-peren-ink transition-all duration-300 hover:border-peren-ink hover:text-peren-midnight',
+      className
+    )}
   >
     <span className="transition-colors duration-300 group-hover:text-peren-sun">EN</span>
     <svg
       viewBox="0 0 10 6"
-      className="h-[6px] w-[10px] text-white transition-all duration-300 group-hover:translate-y-0.5 group-hover:text-peren-sun"
+      className="h-[6px] w-[10px] text-current transition-all duration-300 group-hover:translate-y-0.5 group-hover:text-peren-sun"
       aria-hidden
     >
       <path
@@ -39,11 +42,16 @@ const LogoMark = () => (
 
 const Header = () => (
   <header className="relative z-10 pt-10 pb-6 text-white" id="top">
-    <Container>
-      <div className="flex items-center gap-6 rounded-[62px] bg-peren-ink px-8 py-5 shadow-card">
-        <LogoMark />
+    <Container className="relative">
+      <div className="absolute right-0 top-0">
+        <LanguageToggle />
+      </div>
+      <div className="flex items-center gap-6 rounded-[62px] bg-peren-ink px-10 py-5 shadow-card">
+        <div className="-ml-4">
+          <LogoMark />
+        </div>
         <nav
-          className="mx-auto hidden items-center gap-8 text-micro uppercase tracking-[0.4em] md:flex"
+          className="mx-auto flex flex-wrap items-center gap-10 text-micro uppercase tracking-[0.7em]"
           aria-label="Primary navigation"
         >
           {navLinks.map((item) => (
@@ -59,7 +67,6 @@ const Header = () => (
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <LanguageToggle />
           <Button className="hidden px-6 py-2 md:inline-flex">{heroContent.cta}</Button>
         </div>
       </div>
