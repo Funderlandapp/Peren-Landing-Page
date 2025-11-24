@@ -15,16 +15,18 @@ const Hero = () => (
               loading="eager"
             />
           </div>
-          <div className="flex max-w-[360px] flex-col gap-6">
-            <h1 className="text-display font-normal tracking-[0.08em]">
+          <div className="flex w-full max-w-[375px] flex-col gap-6">
+            <h1 className="text-display font-normal leading-[1.21] tracking-normal">
               {heroContent.title.split('\n').map((line) => (
                 <span key={line} className="block">
                   {line}
                 </span>
               ))}
             </h1>
-            <p className="text-body-md text-peren-midnight whitespace-pre-line">{heroContent.subtitle}</p>
-            <Button className="px-8 py-3">{heroContent.cta}</Button>
+            <p className="text-body-md font-light leading-[1.21] text-peren-midnight whitespace-pre-line">
+              {heroContent.subtitle}
+            </p>
+            <Button className="h-10 w-[167px] justify-start px-5">{heroContent.cta}</Button>
           </div>
         </div>
       </div>
@@ -36,4 +38,5 @@ const Hero = () => (
 )
 
 export default Hero
+
 
