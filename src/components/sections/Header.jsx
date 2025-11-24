@@ -4,16 +4,30 @@ import Button from '../common/Button'
 import { heroContent, navLinks } from '../../data/landingContent'
 
 const LanguageToggle = ({ className }) => (
-  <div
+  <button
+    type="button"
+    aria-label="Switch language"
     className={clsx(
-      'inline-flex items-center gap-2 rounded-full border border-peren-ink/30 bg-white/90 px-3 py-1 text-micro font-medium uppercase tracking-[0.3em]',
+      'flex items-center gap-2 text-micro font-medium uppercase tracking-[0.4em] text-peren-ink',
       className
     )}
   >
     <span>EN</span>
-    <span className="block h-3 w-px bg-peren-ink/40" />
-    <span>FR</span>
-  </div>
+    <svg
+      viewBox="0 0 10 6"
+      className="h-[6px] w-[10px] text-peren-ink"
+      aria-hidden
+    >
+      <path
+        d="M1 1.25L5 4.75L9 1.25"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </svg>
+  </button>
 )
 
 const LogoMark = () => (
@@ -29,7 +43,7 @@ const LogoMark = () => (
 const Header = () => (
   <header className="relative z-10 pt-10 pb-6 text-white" id="top">
     <Container className="relative">
-      <LanguageToggle className="absolute right-0 top-[-20px]" />
+      <LanguageToggle className="absolute right-0 top-[-32px]" />
       <div className="flex items-center gap-6 rounded-[62px] bg-peren-ink px-10 py-5 shadow-card">
         <div className="-ml-4">
           <LogoMark />
