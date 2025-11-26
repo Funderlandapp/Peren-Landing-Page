@@ -42,6 +42,33 @@ export const valueTiles = [
   },
 ]
 
+export const professionalsTiles = [
+  {
+    id: 'monitoring',
+    title: 'CONTINUOUS\nMONITORING',
+    description: 'Real-time clinical metrics tracking at scale.',
+    icon: 'blob', // Purple blob icon
+  },
+  {
+    id: 'twins',
+    title: 'DIGITAL TWINS\nMODELING',
+    description: 'Create patient-specific biological models for prediction and personalization.',
+    icon: 'x-shape', // X/hourglass icon
+  },
+  {
+    id: 'simulations',
+    title: 'SMART\nSIMULATIONS',
+    description: 'Test cohorts, biomarkers, and interventions virtually.',
+    icon: 'flower', // Four-petal flower/clover icon
+  },
+  {
+    id: 'harmonization',
+    title: 'DATA\nHARMONIZATION',
+    description: 'Unify multimodal health data for precise, intelligent decision-making',
+    icon: 'star', // Eight-pointed star icon
+  },
+]
+
 export const scienceSection = {
   label: 'What we test',
   title: 'Backed by science. Designed for humans.',
@@ -72,20 +99,24 @@ export const howItWorks = {
   // mirror the intent of the labeled rectangles to maintain narrative continuity.
   steps: [
     {
-      id: '01',
+      id: '1',
       title: 'Scan\nYour Body',
       description: 'See how it performs now. Discover your Body Age and Health profile.',
     },
     {
-      id: '02',
-      title: 'Simulate\nInterventions',
-      description:
-        'Run AI-powered simulations on sleep, nutrition, training, and recovery to map future outcomes.',
+      id: '2',
+      title: 'Create\nYour Twin',
+      description: 'A personalized digital model that learns from your unique biology.',
     },
     {
-      id: '03',
-      title: 'Stay in\nSync',
-      description: 'Align daily rhythms with adaptive protocols and continuous insights from your twin.',
+      id: '3',
+      title: 'Simulate\nYour Future',
+      description: 'See how daily choices shape your metabolism, recovery, and resilience over time.',
+    },
+    {
+      id: '4',
+      title: 'Level up\nYour Health',
+      description: 'Get actionable insights to feel younger, stronger, and in control.',
     },
   ],
 }
@@ -93,7 +124,7 @@ export const howItWorks = {
 export const newsHighlight = {
   label: 'Life at Peren Blog',
   title: 'See the Future of Health — Meet PEREN AI at MEDays 2025',
-  body: `PEREN AI is participating in the MEDays Forum 2025, where we will be exhibiting in the Startups Village on November 26 and 27.
+  body: `PEREN AI is participating in the **MEDays Forum 2025**, where we will be exhibiting in the **Startups Village on November 26 and 27**.
 
 AI powered, science driven, and human centred, PEREN AI is shaping the future of proactive and personalized health.
 
@@ -126,7 +157,7 @@ export const footerContent = {
     },
   ],
   channels: [
-    { label: 'Substack', handle: '@Lifeatperen', href: 'https://peren-ai.substack.com' },
+    { label: 'Substack', handle: '@Lifeatperen', href: 'https://substack.com/@lifeatperen' },
     { label: 'Blog', handle: 'Life at Peren', href: '#blog' },
   ],
   legal: ['Company', 'Research', 'Terms', 'Privacy'],

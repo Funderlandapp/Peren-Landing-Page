@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { LanguageProvider } from './contexts/LanguageContext'
 import LandingPage from './pages/LandingPage'
 import ComponentShowcase from './pages/ComponentShowcase'
 
@@ -8,7 +9,11 @@ function App() {
     []
   )
 
-  return isDemo ? <ComponentShowcase /> : <LandingPage />
+  return (
+    <LanguageProvider>
+      {isDemo ? <ComponentShowcase /> : <LandingPage />}
+    </LanguageProvider>
+  )
 }
 
 export default App

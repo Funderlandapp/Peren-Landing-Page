@@ -1,39 +1,53 @@
 import Container from '../layout/Container'
-import Button from '../common/Button'
-import { howItWorks } from '../../data/landingContent'
+import { useLanguage } from '../../contexts/LanguageContext'
+import { translations } from '../../data/translations'
 
-const StepRow = ({ id, title, description }) => (
-  <li className="flex flex-col gap-2 rounded-22 border border-peren-ink/15 bg-white/80 px-6 py-5 shadow-card backdrop-blur">
-    <span className="text-eyebrow font-semibold tracking-[0.3em] text-peren-midnight">{id}</span>
-    <p className="text-kicker font-normal text-peren-midnight whitespace-pre-line">{title}</p>
-    <p className="text-body-md text-peren-midnight/80">{description}</p>
-  </li>
-)
+const HowItWorks = () => {
+  const { language } = useLanguage()
+  const t = translations[language]
 
-const HowItWorks = () => (
-  <section className="py-section" id="join">
-    <Container className="grid gap-10 lg:grid-cols-[1.1fr,0.9fr]">
-      <div className="overflow-hidden rounded-[60px] border border-peren-ink/5 bg-peren-neutral p-4">
-        <img
-          src={howItWorks.image.src}
-          alt={howItWorks.image.alt}
-          className="h-full w-full rounded-[46px] object-cover"
-          loading="lazy"
-        />
-      </div>
-      <div className="space-y-6">
-        <p className="text-body-md uppercase tracking-[0.3em] text-peren-midnight">How it works</p>
-        <h3 className="text-display-sm font-normal text-peren-midnight">{howItWorks.headline}</h3>
-        <ol className="space-y-4">
-          {howItWorks.steps.map((step) => (
-            <StepRow key={step.id} {...step} />
-          ))}
-        </ol>
-        <Button className="px-8 py-3">Join the waiting list</Button>
-      </div>
-    </Container>
-  </section>
-)
+  return (
+    <section className="py-16 md:py-24 bg-gradient-to-b from-[#E6D7F0] to-[#F5F5DC]" id="join">
+      <Container>
+        <div className="flex flex-col gap-12 md:gap-16">
+          {/* Top Headings */}
+          <div className="text-center">
+            <h2 className="font-['Inter',sans-serif] text-3xl font-normal leading-tight text-black md:text-4xl lg:text-[40px]">
+              {t.howItWorks.headline}
+            </h2>
+            <p className="mt-4 font-['Inter',sans-serif] text-lg font-medium text-black md:text-xl">
+              {language === 'en' ? 'How it works' : 'Comment ça marche'}
+            </p>
+          </div>
+
+          {/* Main Content Area - Using the new design image */}
+          <div className="flex justify-center px-4 md:px-6 lg:px-8">
+            <div className="rounded-lg md:rounded-xl overflow-hidden w-full max-w-6xl">
+              <img
+                src="/assets/Health checkup, anywhere, anytime.png"
+                alt={t.howItWorks.imageAlt}
+                className="w-full h-auto object-contain"
+                style={{ mixBlendMode: 'multiply' }}
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="flex justify-center">
+            <a
+              href="https://form.typeform.com/to/YcGG4bBV"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-[10px] bg-black px-8 py-3.5 font-['Inter',sans-serif] text-base font-medium text-white transition-colors hover:opacity-90"
+            >
+              {t.hero.cta}
+            </a>
+          </div>
+        </div>
+      </Container>
+    </section>
+  )
+}
 
 export default HowItWorks
-

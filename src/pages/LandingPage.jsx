@@ -2,7 +2,6 @@ import Header from '../components/sections/Header'
 import Hero from '../components/sections/Hero'
 import ValueTiles from '../components/sections/ValueTiles'
 import ScienceShowcase from '../components/sections/ScienceShowcase'
-import SimulationPillars from '../components/sections/SimulationPillars'
 import HowItWorks from '../components/sections/HowItWorks'
 import NewsHighlight from '../components/sections/NewsHighlight'
 import Footer from '../components/sections/Footer'
@@ -14,7 +13,6 @@ const LandingPage = () => (
       <Hero />
       <ValueTiles />
       <ScienceShowcase />
-      <SimulationPillars />
       <HowItWorks />
       <NewsHighlight />
     </main>
