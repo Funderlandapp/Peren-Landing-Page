@@ -3,7 +3,7 @@ import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../data/translations'
 
 const ScienceCard = ({ title, image }) => (
-  <div className="flex flex-col items-center justify-center gap-3 rounded-[22px] border-[0.5px] border-gray-300 bg-gray-200 p-4 aspect-square">
+  <div className="flex flex-col items-center justify-center gap-3 rounded-[22px] border-[0.5px] border-black bg-white p-4 aspect-square">
     <img src={image} alt={`${title} visualization`} className="h-28 w-28 object-contain" loading="lazy" />
     <p className="font-['Inter',sans-serif] text-base font-medium text-black">{title}</p>
   </div>
