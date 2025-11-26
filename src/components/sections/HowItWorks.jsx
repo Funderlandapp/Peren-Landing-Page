@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Container from '../layout/Container'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../data/translations'
@@ -150,6 +150,26 @@ const HowItWorksSteps = () => {
       description: t.howItWorks.steps.levelUp.description,
     },
   ]
+
+  // Listen for navigation event from header
+  useEffect(() => {
+    const handleNavigateToStep = (event) => {
+      if (event.detail && typeof event.detail.step === 'number') {
+        setCurrentStep(event.detail.step)
+      }
+    }
+
+    window.addEventListener('navigateToStep', handleNavigateToStep)
+    
+    // Check URL hash on mount
+    if (window.location.hash === '#join?step=3' || window.location.search.includes('step=3')) {
+      setCurrentStep(2) // 3rd step (index 2)
+    }
+
+    return () => {
+      window.removeEventListener('navigateToStep', handleNavigateToStep)
+    }
+  }, [])
 
   const goToPrev = () => {
     setCurrentStep((prev) => (prev === 0 ? stepsData.length - 1 : prev - 1))

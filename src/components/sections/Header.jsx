@@ -112,7 +112,7 @@ const Header = () => {
 
   const navLinks = [
     { label: t.nav.whyPeren, href: '#why' },
-    { label: t.nav.simulations, href: '#simulations' },
+    { label: t.nav.simulations, href: '#join?step=3' },
     { label: t.nav.joinPeren, href: '#join' },
     { label: t.nav.contactUs, href: '#contact' },
   ]
@@ -135,6 +135,19 @@ const Header = () => {
               <a
                 key={item.href}
                 href={item.href}
+                onClick={(e) => {
+                  if (item.href.includes('?step=3')) {
+                    e.preventDefault()
+                    const section = document.getElementById('join')
+                    if (section) {
+                      section.scrollIntoView({ behavior: 'smooth' })
+                      // Trigger step change after scroll
+                      setTimeout(() => {
+                        window.dispatchEvent(new CustomEvent('navigateToStep', { detail: { step: 2 } }))
+                      }, 500)
+                    }
+                  }
+                }}
                 className={clsx(
                   'text-white transition-colors duration-300 hover:text-peren-sun focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-peren-sun focus-visible:ring-offset-peren-ink'
                 )}
@@ -163,7 +176,20 @@ const Header = () => {
                   <a
                     key={item.href}
                     href={item.href}
-                    onClick={handleNavClick}
+                    onClick={(e) => {
+                      handleNavClick()
+                      if (item.href.includes('?step=3')) {
+                        e.preventDefault()
+                        const section = document.getElementById('join')
+                        if (section) {
+                          section.scrollIntoView({ behavior: 'smooth' })
+                          // Trigger step change after scroll
+                          setTimeout(() => {
+                            window.dispatchEvent(new CustomEvent('navigateToStep', { detail: { step: 2 } }))
+                          }, 500)
+                        }
+                      }
+                    }}
                     className="text-white transition-colors duration-200 hover:text-peren-sun"
                   >
                     {item.label}
