@@ -3,9 +3,9 @@ import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../data/translations'
 
 const ScienceCard = ({ title, image }) => (
-  <div className="flex flex-col items-center justify-center gap-3 rounded-[22px] border-[0.5px] border-black bg-white p-4 aspect-square">
-    <img src={image} alt={`${title} visualization`} className="h-28 w-28 object-contain" loading="lazy" />
-    <p className="font-['Inter',sans-serif] text-base font-medium text-black">{title}</p>
+  <div className="flex flex-col items-center justify-center gap-4 rounded-[22px] border border-black bg-white p-3 aspect-square" style={{ borderWidth: '1px' }}>
+    <img src={image} alt={`${title} visualization`} className="h-36 w-36 md:h-40 md:w-40 object-contain" loading="lazy" />
+    <p className="font-['Inter',sans-serif] text-lg md:text-xl font-medium text-black">{title}</p>
   </div>
 )
 
