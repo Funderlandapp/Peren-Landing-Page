@@ -1,6 +1,7 @@
 import Container from '../layout/Container'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../data/translations'
+import { assetPath } from '../../utils/assetPath'
 
 const ArrowButton = ({ direction, onClick }) => (
   <button
@@ -57,7 +58,7 @@ const NewsHighlight = () => {
               {/* Image */}
               <div className="order-2 lg:order-1">
                 <img
-                  src="/assets/blog-medays.png"
+                  src={assetPath('assets/blog-medays.png')}
                   alt={t.news.imageAlt}
                   className="h-full w-full rounded-[33px] object-cover"
                   loading="lazy"

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Container from '../layout/Container'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../data/translations'
+import { assetPath } from '../../utils/assetPath'
 
 // --- ICONS & ASSETS ---
 
@@ -47,17 +48,17 @@ const ValueTiles = () => {
   const [activeTab, setActiveTab] = useState('individuals')
 
   const valueTiles = [
-    { id: 'age', ...t.valueTiles.age, image: '/assets/value-balance-visual.png' },
-    { id: 'perform', ...t.valueTiles.perform, image: '/assets/value-age-visual.png' },
-    { id: 'balance', ...t.valueTiles.balance, image: '/assets/value-sync-visual.png' },
-    { id: 'sync', ...t.valueTiles.sync, image: '/assets/value-perform-visual.png' },
+    { id: 'age', ...t.valueTiles.age, image: assetPath('assets/value-balance-visual.png') },
+    { id: 'perform', ...t.valueTiles.perform, image: assetPath('assets/value-age-visual.png') },
+    { id: 'balance', ...t.valueTiles.balance, image: assetPath('assets/value-sync-visual.png') },
+    { id: 'sync', ...t.valueTiles.sync, image: assetPath('assets/value-perform-visual.png') },
   ]
 
   const professionalsTiles = [
-    { id: 'monitoring', icon: 'blob', ...t.professionalsTiles.monitoring, image: '/assets/CONTINUOUS MONITORING.png' },
-    { id: 'twins', icon: 'x-shape', ...t.professionalsTiles.twins, image: '/assets/DIGITAL TWINS MODELING.png' },
-    { id: 'simulations', icon: 'flower', ...t.professionalsTiles.simulations, image: '/assets/SMART SIMULATIONS.png' },
-    { id: 'harmonization', icon: 'star', ...t.professionalsTiles.harmonization, image: '/assets/DATA HARMONIZATION.png' },
+    { id: 'monitoring', icon: 'blob', ...t.professionalsTiles.monitoring, image: assetPath('assets/CONTINUOUS MONITORING.png') },
+    { id: 'twins', icon: 'x-shape', ...t.professionalsTiles.twins, image: assetPath('assets/DIGITAL TWINS MODELING.png') },
+    { id: 'simulations', icon: 'flower', ...t.professionalsTiles.simulations, image: assetPath('assets/SMART SIMULATIONS.png') },
+    { id: 'harmonization', icon: 'star', ...t.professionalsTiles.harmonization, image: assetPath('assets/DATA HARMONIZATION.png') },
   ]
 
   const getHeading = () => {

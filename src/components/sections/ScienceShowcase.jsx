@@ -1,6 +1,7 @@
 import Container from '../layout/Container'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../data/translations'
+import { assetPath } from '../../utils/assetPath'
 
 const ScienceCard = ({ title, image }) => (
   <div className="flex flex-col items-center justify-center gap-4 rounded-[22px] border border-black bg-white p-3 aspect-square" style={{ borderWidth: '1px' }}>
@@ -35,9 +36,9 @@ const ScienceShowcase = () => {
   const { language } = useLanguage()
   const t = translations[language]
   const scienceCards = [
-    { title: t.science.cards.biomarkers, image: '/assets/science-biomarkers.png' },
-    { title: t.science.cards.lifestyle, image: '/assets/science-lifestyle.png' },
-    { title: t.science.cards.hormones, image: '/assets/science-hormones.png' },
+    { title: t.science.cards.biomarkers, image: assetPath('assets/science-biomarkers.png') },
+    { title: t.science.cards.lifestyle, image: assetPath('assets/science-lifestyle.png') },
+    { title: t.science.cards.hormones, image: assetPath('assets/science-hormones.png') },
   ]
 
   return (

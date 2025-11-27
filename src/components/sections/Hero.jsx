@@ -1,6 +1,7 @@
 import React from 'react'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../data/translations'
+import { assetPath } from '../../utils/assetPath'
 
 /**
  * HeroSection - Pixel-accurate recreation of the Figma hero section
@@ -48,7 +49,7 @@ const HeroSection = () => {
         
         {/* Hero Image - Woman with mesh overlay */}
         <img 
-          src="/assets/hero-woman.png" 
+          src={assetPath('assets/hero-woman.png')} 
           alt={t.hero.imageAlt}
           className="absolute"
           style={{

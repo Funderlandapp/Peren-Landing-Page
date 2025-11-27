@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Container from '../layout/Container'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../data/translations'
+import { assetPath } from '../../utils/assetPath'
 
 /* ============================================
    NAVIGATION CHEVRON ICONS
@@ -194,7 +195,7 @@ const HowItWorksSteps = () => {
     >
       {/* Body Scan Image - Desktop */}
       <img 
-        src="/assets/howitworks-scan.png" 
+        src={assetPath('assets/howitworks-scan.png')} 
         alt={t.howItWorks.imageAlt}
         className="steps-image absolute hidden lg:block"
         style={{
@@ -209,7 +210,7 @@ const HowItWorksSteps = () => {
       />
       {/* Body Scan Image - Tablets & iPads */}
       <img 
-        src="/assets/howitworks-scan.png" 
+        src={assetPath('assets/howitworks-scan.png')} 
         alt={t.howItWorks.imageAlt}
         className="steps-image absolute hidden md:block lg:hidden"
         style={{
@@ -224,7 +225,7 @@ const HowItWorksSteps = () => {
       />
       {/* Body Scan Image - Mobile */}
       <img 
-        src="/assets/howitworks-scan.png" 
+        src={assetPath('assets/howitworks-scan.png')} 
         alt={t.howItWorks.imageAlt}
         className="steps-image absolute md:hidden"
         style={{
