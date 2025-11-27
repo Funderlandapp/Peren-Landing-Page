@@ -120,7 +120,7 @@ const ValueTiles = () => {
     : 'bg-gradient-to-b from-[#E6D7F0] to-[#F5F5DC]'
 
   return (
-    <section id="why" className="py-16 lg:py-24 bg-white">
+    <section id="why" className="py-12 sm:py-16 lg:py-24 bg-white">
       <Container>
         <div className="w-full">
           
@@ -155,24 +155,24 @@ const ValueTiles = () => {
           </div>
 
         {/* Main Content Card - Full Width */}
-        <div className={`relative z-20 w-full overflow-hidden rounded-b-[60px] px-8 py-12 md:px-12 md:py-16 lg:px-20 lg:py-20 ${gradientClasses}`}>
+        <div className={`relative z-20 w-full overflow-hidden rounded-b-[60px] px-4 py-8 sm:px-8 sm:py-12 md:px-12 md:py-16 lg:px-20 lg:py-20 ${gradientClasses}`}>
           
           {/* Main Heading */}
-          <div className="mb-16 text-center">
-            <h2 className="mx-auto max-w-4xl font-['Inter',sans-serif] text-3xl font-normal leading-tight text-black md:text-4xl lg:text-[42px]">
+          <div className="mb-10 sm:mb-16 text-center">
+            <h2 className="mx-auto max-w-4xl font-['Inter',sans-serif] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[42px] font-normal leading-tight text-black px-2">
               {getHeading()}
             </h2>
           </div>
 
           {/* "Why Peren" Label */}
-          <div className="mb-12 flex justify-center">
-            <span className="rounded-full px-4 py-1 font-['Inter',sans-serif] text-3xl font-normal text-black md:text-4xl lg:text-[42px]">
+          <div className="mb-8 sm:mb-12 flex justify-center">
+            <span className="rounded-full px-3 py-1 font-['Inter',sans-serif] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[42px] font-normal text-black">
               {t.nav.whyPeren}
             </span>
           </div>
 
           {/* Content Grid - Full Width */}
-          <div className="grid gap-x-12 gap-y-16 md:grid-cols-2 lg:gap-x-20">
+          <div className="grid gap-x-6 gap-y-10 sm:gap-x-8 sm:gap-y-12 md:grid-cols-2 md:gap-x-12 md:gap-y-16 lg:gap-x-20">
             {(activeTab === 'individuals' ? valueTiles : professionalsTiles).map((tile) => {
               const isIndividuals = activeTab === 'individuals'
               
@@ -180,13 +180,13 @@ const ValueTiles = () => {
                 <article key={tile.id} className="flex flex-col group cursor-default">
                   
                   {/* Visual Container (Image or Icon) */}
-                  <div className="relative flex h-[320px] w-full items-center justify-center overflow-hidden">
+                  <div className="relative flex h-[200px] sm:h-[250px] md:h-[280px] lg:h-[320px] w-full items-center justify-center overflow-hidden">
                     {isIndividuals ? (
                       (tile.id === 'perform' || tile.id === 'age' || tile.id === 'balance' || tile.id === 'sync') ? (
                         <img
                           src={tile.image}
                           alt={tile.title}
-                          className="h-[320px] w-auto object-contain border-0 outline-none"
+                          className="h-[200px] sm:h-[250px] md:h-[280px] lg:h-[320px] w-auto object-contain border-0 outline-none"
                           style={{ border: 'none', outline: 'none' }}
                           loading="lazy"
                         />
@@ -203,7 +203,7 @@ const ValueTiles = () => {
                       <img
                         src={tile.image}
                         alt={tile.title}
-                        className="h-[320px] w-auto object-contain border-0 outline-none"
+                        className="h-[200px] sm:h-[250px] md:h-[280px] lg:h-[320px] w-auto object-contain border-0 outline-none"
                         style={{ border: 'none', outline: 'none' }}
                         loading="lazy"
                       />
@@ -211,17 +211,17 @@ const ValueTiles = () => {
                   </div>
 
                   {/* Text Content */}
-                  <div className="flex items-start justify-between gap-4 mt-4">
-                    <div className="flex-1 space-y-2">
-                      <h3 className="whitespace-pre-line font-['Inter',sans-serif] text-xl font-bold uppercase leading-none text-black md:text-2xl">
+                  <div className="flex items-start justify-between gap-2 sm:gap-4 mt-3 sm:mt-4">
+                    <div className="flex-1 space-y-1 sm:space-y-2">
+                      <h3 className="whitespace-pre-line font-['Inter',sans-serif] text-lg sm:text-xl md:text-2xl font-bold uppercase leading-tight text-black">
                         {tile.title}
                       </h3>
-                      <p className="max-w-sm font-['Inter',sans-serif] text-base text-gray-800 md:text-lg leading-relaxed">
+                      <p className="max-w-sm font-['Inter',sans-serif] text-sm sm:text-base md:text-lg text-gray-800 leading-relaxed">
                         {tile.description}
                       </p>
                     </div>
-                    <div className="flex items-center justify-center">
-                      <ArrowRight className="h-6 w-6 text-black" />
+                    <div className="flex items-center justify-center flex-shrink-0">
+                      <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6 text-black" />
                     </div>
                   </div>
                 </article>

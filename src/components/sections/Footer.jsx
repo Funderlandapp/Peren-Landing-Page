@@ -17,19 +17,19 @@ const SocialCard = ({ label, handle, description, icon, href }) => (
     href={href}
     target="_blank"
     rel="noreferrer"
-    className="flex h-full flex-col rounded-[32px] border border-gray-300 bg-white px-6 py-6 text-left transition-colors duration-300 hover:border-gray-400 hover:shadow-sm"
+    className="flex h-full flex-col rounded-[20px] sm:rounded-[32px] border border-gray-300 bg-white px-4 py-4 sm:px-6 sm:py-6 text-left transition-colors duration-300 hover:border-gray-400 hover:shadow-sm"
   >
-    <div className="flex items-start justify-between gap-4">
-      <p className="text-base font-semibold text-gray-900">{label}</p>
-      <p className="text-sm text-gray-600">{handle}</p>
+    <div className="flex items-start justify-between gap-2 sm:gap-4">
+      <p className="text-sm sm:text-base font-semibold text-gray-900">{label}</p>
+      <p className="text-xs sm:text-sm text-gray-600">{handle}</p>
     </div>
     {description && (
-      <p className="mt-4 text-sm font-medium text-gray-900">{description}</p>
+      <p className="mt-3 sm:mt-4 text-xs sm:text-sm font-medium text-gray-900">{description}</p>
     )}
     {icon && (
-      <div className="mt-8 flex flex-1 items-center justify-center">
-        <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
-          <img src={icon} alt={`${label} icon`} className="h-6 w-6 grayscale" />
+      <div className="mt-6 sm:mt-8 flex flex-1 items-center justify-center">
+        <span className="inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-gray-100">
+          <img src={icon} alt={`${label} icon`} className="h-5 w-5 sm:h-6 sm:w-6 grayscale" />
         </span>
       </div>
     )}
@@ -95,13 +95,13 @@ const Footer = () => {
   ]
 
   return (
-    <footer id="contact" className="bg-white py-20 text-gray-900">
-      <Container className="flex flex-col items-center gap-12 text-center">
+    <footer id="contact" className="bg-white py-12 sm:py-16 md:py-20 text-gray-900">
+      <Container className="flex flex-col items-center gap-8 sm:gap-12 text-center">
         {/* Top Section: Large Black Rounded Rectangle */}
-        <div className="w-full rounded-[60px] bg-black px-8 py-16 md:px-12 md:py-20">
-          <div className="flex flex-col items-center gap-6 text-center text-white">
-            <h2 className="text-xl font-normal text-white md:text-2xl">PEREN AI</h2>
-            <p className="max-w-3xl text-2xl leading-tight text-white md:text-3xl lg:text-4xl whitespace-pre-line">
+        <div className="w-full rounded-[40px] sm:rounded-[60px] bg-black px-4 py-10 sm:px-8 sm:py-16 md:px-12 md:py-20">
+          <div className="flex flex-col items-center gap-4 sm:gap-6 text-center text-white">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-normal text-white">PEREN AI</h2>
+            <p className="max-w-3xl text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight text-white whitespace-pre-line px-2">
               <span className="font-bold">{boldPart}</span>
               {normalPart && (
                 <>
@@ -112,7 +112,7 @@ const Footer = () => {
             </p>
             <a
               href={footerContent.contactHref}
-              className="mt-4 text-base font-medium text-white underline-offset-4 hover:underline md:text-lg"
+              className="mt-2 sm:mt-4 text-sm sm:text-base md:text-lg font-medium text-white underline-offset-4 hover:underline"
             >
               {t.footer.contactLabel}
             </a>
@@ -120,26 +120,26 @@ const Footer = () => {
         </div>
 
         {/* Middle Section: Logo and Slogan */}
-        <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-4 sm:gap-6 px-4">
           <FooterLogo />
-          <p className="text-2xl italic text-black md:text-3xl lg:text-4xl">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl italic text-black">
             {t.footer.statement.replace(' — ', ' ')}
           </p>
         </div>
 
         {/* Bottom Section: Social Cards */}
-        <div className="grid w-full gap-6 md:grid-cols-3">
+        <div className="grid w-full gap-4 sm:gap-6 md:grid-cols-3">
           {socialCards.map((card) => (
             <SocialCard key={card.label} {...card} />
           ))}
         </div>
 
         {/* Footer Bottom: Copyright and Legal Links */}
-        <div className="space-y-4 text-sm text-gray-700">
+        <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm text-gray-700 px-4">
           <p>{t.footer.copyright}</p>
-          <div className="flex flex-wrap items-center justify-center gap-2">
+          <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-2">
             {legalItems.map((item, index) => (
-              <span key={item} className="flex items-center gap-2 uppercase tracking-wider">
+              <span key={item} className="flex items-center gap-1 sm:gap-2 uppercase tracking-wider">
                 <span>{item}</span>
                 {index < legalItems.length - 1 && <span className="text-gray-500">-</span>}
               </span>

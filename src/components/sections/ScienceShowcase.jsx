@@ -2,11 +2,12 @@ import Container from '../layout/Container'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../data/translations'
 import { assetPath } from '../../utils/assetPath'
+import { TYPEFORM_URL } from '../../constants/links'
 
 const ScienceCard = ({ title, image }) => (
-  <div className="flex flex-col items-center justify-center gap-4 rounded-[22px] border border-black bg-white p-3 aspect-square" style={{ borderWidth: '1px' }}>
-    <img src={image} alt={`${title} visualization`} className="h-36 w-36 md:h-40 md:w-40 object-contain" loading="lazy" />
-    <p className="font-['Inter',sans-serif] text-lg md:text-xl font-medium text-black">{title}</p>
+  <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 rounded-[22px] border border-black bg-white p-3 aspect-square" style={{ borderWidth: '1px' }}>
+    <img src={image} alt={`${title} visualization`} className="h-28 w-28 sm:h-32 sm:w-32 md:h-36 md:w-36 lg:h-40 lg:w-40 object-contain" loading="lazy" />
+    <p className="font-['Inter',sans-serif] text-base sm:text-lg md:text-xl font-medium text-black">{title}</p>
   </div>
 )
 
@@ -42,17 +43,17 @@ const ScienceShowcase = () => {
   ]
 
   return (
-    <section className="py-section bg-white" id="science">
+    <section className="py-12 sm:py-16 md:py-20 bg-white" id="science">
       <Container>
-        <div className="flex flex-col items-center gap-12">
+        <div className="flex flex-col items-center gap-8 sm:gap-12">
           {/* Pilot Program Card */}
-          <div className="w-full max-w-4xl rounded-[22px] border border-black bg-white px-8 py-12 md:px-12 md:py-16">
-            <div className="flex flex-col items-center gap-6">
-              <h3 className="text-center font-['Inter',sans-serif] text-3xl font-normal text-black md:text-4xl lg:text-[40px]">
+          <div className="w-full max-w-4xl rounded-[22px] border border-black bg-white px-4 py-8 sm:px-8 sm:py-12 md:px-12 md:py-16">
+            <div className="flex flex-col items-center gap-4 sm:gap-6">
+              <h3 className="text-center font-['Inter',sans-serif] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[40px] font-normal text-black px-2">
                 {t.science.kicker}
               </h3>
               <a
-                href="https://form.typeform.com/to/YcGG4bBV"
+                href={TYPEFORM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-[10px] bg-black px-8 py-3.5 font-['Inter',sans-serif] text-base font-medium text-white transition-colors hover:opacity-90"
@@ -65,8 +66,8 @@ const ScienceShowcase = () => {
           {/* Main Content */}
           <div className="w-full">
             {/* Heading Section */}
-            <div className="mb-8 text-center">
-              <h2 className="font-['Inter',sans-serif] text-3xl font-normal text-black md:text-4xl lg:text-[40px]">
+            <div className="mb-6 sm:mb-8 text-center px-2">
+              <h2 className="font-['Inter',sans-serif] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[40px] font-normal text-black">
                 {t.science.title.split('. ').map((line, index, array) => (
                   <span key={index}>
                     {line}
@@ -75,24 +76,24 @@ const ScienceShowcase = () => {
                   </span>
                 ))}
               </h2>
-              <p className="mt-4 font-['Inter',sans-serif] text-lg font-medium text-black md:text-xl">
+              <p className="mt-3 sm:mt-4 font-['Inter',sans-serif] text-base sm:text-lg md:text-xl font-medium text-black">
                 {t.science.label}
               </p>
             </div>
 
             {/* Cards Grid */}
-            <div className="mb-8 grid gap-6 md:grid-cols-3">
+            <div className="mb-6 sm:mb-8 grid gap-4 sm:gap-6 md:grid-cols-3">
               {scienceCards.map((card) => (
                 <ScienceCard key={card.title} {...card} />
               ))}
             </div>
 
             {/* Discover Section with Navigation */}
-            <div className="flex items-center justify-between">
-              <p className="font-['Inter',sans-serif] text-base text-black md:text-lg">
+            <div className="flex items-center justify-between px-2">
+              <p className="font-['Inter',sans-serif] text-sm sm:text-base md:text-lg text-black">
                 {t.science.caption}
               </p>
-              <div className="flex gap-2">
+              <div className="flex gap-2 flex-shrink-0">
                 <ArrowButton direction="left" />
                 <ArrowButton direction="right" />
               </div>

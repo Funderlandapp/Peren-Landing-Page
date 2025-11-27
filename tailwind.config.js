@@ -52,6 +52,16 @@ export default {
       },
       boxShadow: {
         card: '0 20px 45px rgba(12, 12, 45, 0.08)',
+        glow: '0 0 20px rgba(255, 255, 255, 0.3)',
+      },
+      keyframes: {
+        'pulse-slow': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.7' },
+        },
+      },
+      animation: {
+        'pulse-slow': 'pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
     },
     screens: {
