@@ -1,4 +1,6 @@
 import React from 'react'
+import { useLanguage } from '../../contexts/LanguageContext'
+import { translations } from '../../data/translations'
 
 /**
  * HeroSection - Pixel-accurate recreation of the Figma hero section
@@ -7,6 +9,13 @@ import React from 'react'
  */
 
 const HeroSection = () => {
+  const { language } = useLanguage()
+  const t = translations[language]
+  const titleLines = t.hero.title.split('\n')
+  const subtitleLines = t.hero.subtitle.split('\n')
+  const [firstWord, ...restOfFirstLine] = titleLines[0].split(' ')
+  const remainingTitleLines = titleLines.slice(1)
+
   return (
     <section 
       className="relative w-full overflow-hidden px-6 sm:px-10 lg:px-16"
@@ -40,7 +49,7 @@ const HeroSection = () => {
         {/* Hero Image - Woman with mesh overlay */}
         <img 
           src="/assets/hero-woman.png" 
-          alt="Woman with AI facial analysis mesh"
+          alt={t.hero.imageAlt}
           className="absolute"
           style={{
             // Height allows head to stick out of card (container height > card height)
@@ -74,9 +83,14 @@ const HeroSection = () => {
               marginBottom: 'clamp(16px, 4vh, 44px)',
             }}
           >
-            <span className="font-['Italiana',serif] italic">Define</span>
-            <br />
-            your future health now.
+            <span className="font-['Italiana',serif] italic">{firstWord}</span>
+            {restOfFirstLine.length > 0 && ` ${restOfFirstLine.join(' ')}`}
+            {remainingTitleLines.map((line, index) => (
+              <React.Fragment key={index}>
+                <br />
+                {line}
+              </React.Fragment>
+            ))}
           </h1>
           
           {/* Subtitle - responsive font size */}
@@ -88,11 +102,12 @@ const HeroSection = () => {
               marginBottom: 'clamp(24px, 5vh, 60px)',
             }}
           >
-            AI Powered.
-            <br />
-            Science Driven.
-            <br />
-            Human Centred.
+            {subtitleLines.map((line, index) => (
+              <React.Fragment key={index}>
+                {line}
+                {index < subtitleLines.length - 1 && <br />}
+              </React.Fragment>
+            ))}
           </p>
           
           {/* CTA Button - responsive sizing */}
@@ -107,7 +122,7 @@ const HeroSection = () => {
               height: 'clamp(44px, 6vh, 64px)',
             }}
           >
-            Join the waiting list
+            {t.hero.cta}
           </button>
         </div>
       </div>
