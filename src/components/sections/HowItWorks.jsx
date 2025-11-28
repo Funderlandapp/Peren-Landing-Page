@@ -24,19 +24,36 @@ const ChevronRight = () => (
    SVG ARROW COMPONENT
    ============================================ */
 const Arrow = ({ className = "" }) => (
-  <svg 
-    width="23" 
-    height="12" 
-    viewBox="0 0 23 12" 
-    fill="none" 
-    className={`flex-shrink-0 ${className}`}
-  >
-    <path 
-      d="M0 6H21M21 6L16 1M21 6L16 11" 
-      stroke="black" 
-      strokeWidth="2"
-    />
-  </svg>
+  <>
+    {/* Horizontal Arrow for larger screens (>= 768px) */}
+    <svg 
+      width="23" 
+      height="12" 
+      viewBox="0 0 23 12" 
+      fill="none" 
+      className={`flex-shrink-0 hidden md:block ${className}`}
+    >
+      <path 
+        d="M0 6H21M21 6L16 1M21 6L16 11" 
+        stroke="black" 
+        strokeWidth="2"
+      />
+    </svg>
+    {/* Vertical Arrow for small screens (< 768px) */}
+    <svg 
+      width="12" 
+      height="23" 
+      viewBox="0 0 12 23" 
+      fill="none" 
+      className={`flex-shrink-0 block md:hidden ${className}`}
+    >
+      <path 
+        d="M6 0V21M6 21L1 16M6 21L11 16" 
+        stroke="black" 
+        strokeWidth="2"
+      />
+    </svg>
+  </>
 )
 
 /* ============================================
@@ -49,47 +66,47 @@ const FeatureBar = () => {
 
   return (
     <div 
-      className="feature-bar flex items-center justify-between border border-black"
+      className="feature-bar flex flex-col md:flex-row items-center justify-between border border-black gap-3 md:gap-0"
       style={{
         width: '100%',
-        height: 'min(71px, 8vh)',
+        height: 'auto',
         borderRadius: '55px',
-        padding: '0 min(4vw, 60px)',
+        padding: 'min(20px, 3vh) min(4vw, 60px)',
         margin: '0 auto',
       }}
     >
       <span 
-        className="feature-bar-label font-['Inter',sans-serif] font-semibold"
+        className="feature-bar-label font-['Inter',sans-serif] font-semibold text-center"
         style={{ fontSize: 'clamp(14px, 1.5vw, 18px)', lineHeight: '1.21' }}
       >
         {pillars[0]}
       </span>
       
-      <Arrow className="hidden sm:block" />
+      <Arrow />
       
       <span 
-        className="feature-bar-label font-['Inter',sans-serif] font-semibold"
+        className="feature-bar-label font-['Inter',sans-serif] font-semibold text-center"
         style={{ fontSize: 'clamp(14px, 1.5vw, 18px)', lineHeight: '1.21' }}
       >
         {pillars[1]}
       </span>
       
-      <Arrow className="hidden sm:block" />
+      <Arrow />
       
       <span 
-        className="feature-bar-label font-['Inter',sans-serif] font-semibold whitespace-pre-line text-center"
+        className="feature-bar-label font-['Inter',sans-serif] font-semibold text-center"
         style={{ fontSize: 'clamp(14px, 1.5vw, 18px)', lineHeight: '1.21' }}
       >
-        {pillars[2].replace(' ', '\n')}
+        {pillars[2]}
       </span>
       
-      <Arrow className="hidden sm:block" />
+      <Arrow />
       
       <span 
-        className="feature-bar-label font-['Inter',sans-serif] font-semibold whitespace-pre-line text-center"
+        className="feature-bar-label font-['Inter',sans-serif] font-semibold text-center"
         style={{ fontSize: 'clamp(14px, 1.5vw, 18px)', lineHeight: '1.21' }}
       >
-        {pillars[3].replace(' ', '\n')}
+        {pillars[3]}
       </span>
     </div>
   )
@@ -127,6 +144,8 @@ const JoinButton = () => {
    ============================================ */
 const HowItWorksSteps = () => {
   const [currentStep, setCurrentStep] = useState(0)
+  const [touchStart, setTouchStart] = useState(0)
+  const [touchEnd, setTouchEnd] = useState(0)
   const { language } = useLanguage()
   const t = translations[language]
   
@@ -181,6 +200,34 @@ const HowItWorksSteps = () => {
     setCurrentStep((prev) => (prev === stepsData.length - 1 ? 0 : prev + 1))
   }
 
+  // Touch handlers for swipe functionality
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    
+    const distance = touchStart - touchEnd
+    const minSwipeDistance = 50 // minimum distance for swipe
+    
+    if (distance > minSwipeDistance) {
+      // Swiped left - go to next
+      goToNext()
+    } else if (distance < -minSwipeDistance) {
+      // Swiped right - go to previous
+      goToPrev()
+    }
+    
+    // Reset values
+    setTouchStart(0)
+    setTouchEnd(0)
+  }
+
   const currentStepData = stepsData[currentStep]
 
   return (
@@ -193,109 +240,116 @@ const HowItWorksSteps = () => {
         margin: '0 auto',
         backgroundColor: 'transparent',
       }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
-      {/* Body Scan Image - Desktop */}
-      <img 
-        src={assetPath('assets/howitworks-scan.png')} 
-        alt={t.howItWorks.imageAlt}
-        className="steps-image absolute hidden lg:block"
-        style={{
-          height: 'calc(100% + 41px)',
-          width: 'auto',
-          left: '-80px',
-          top: '0',
-          zIndex: 1,
-          objectFit: 'cover',
-          objectPosition: 'left top',
-        }}
-      />
-      {/* Body Scan Image - Tablets & iPads */}
-      <img 
-        src={assetPath('assets/howitworks-scan.png')} 
-        alt={t.howItWorks.imageAlt}
-        className="steps-image absolute hidden md:block lg:hidden"
-        style={{
-          height: 'calc(100% + 41px)',
-          width: 'auto',
-          left: '-50px',
-          top: '0',
-          zIndex: 1,
-          objectFit: 'cover',
-          objectPosition: 'left top',
-        }}
-      />
-      {/* Body Scan Image - Mobile */}
-      <img 
-        src={assetPath('assets/howitworks-scan.png')} 
-        alt={t.howItWorks.imageAlt}
-        className="steps-image absolute md:hidden"
-        style={{
-          width: '70vw',
-          height: 'auto',
-          left: '-20px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          zIndex: 1,
-          objectFit: 'contain',
-        }}
-      />
-      
-      {/* Step Content - Right Side */}
-      <div 
-        className="steps-content absolute right-0 top-0 h-full flex flex-col justify-center px-4 sm:px-0"
-        style={{
-          width: '100%',
-          padding: 'clamp(15px, 4vh, 40px) clamp(10px, 3vw, 30px) clamp(15px, 4vh, 40px) clamp(10px, 3vw, 0px)',
-        }}
-      >
-        <div className="sm:ml-auto sm:w-[60%] md:w-[50%] lg:w-[420px]">
-          {/* Step Title */}
-          <h3 
-            className="step-title font-['Inter',sans-serif] font-normal text-black whitespace-pre-line"
+          {/* Body Scan Image - Desktop */}
+          <img 
+            src={assetPath('assets/howitworks-scan.png')} 
+            alt={t.howItWorks.imageAlt}
+            className="steps-image absolute hidden lg:block"
             style={{
-              fontSize: 'clamp(18px, 2.5vw, 40px)',
-              lineHeight: '1.21',
-              marginBottom: 'clamp(6px, 2vh, 16px)',
+              height: 'calc(100% + 41px)',
+              width: 'auto',
+              left: '-80px',
+              top: '0',
+              zIndex: 1,
+              objectFit: 'cover',
+              objectPosition: 'left top',
             }}
-            key={`title-${currentStep}`}
-          >
-            {currentStepData.number} {currentStepData.title}
-          </h3>
+          />
+          {/* Body Scan Image - Tablets & iPads */}
+          <img 
+            src={assetPath('assets/howitworks-scan.png')} 
+            alt={t.howItWorks.imageAlt}
+            className="steps-image absolute hidden md:block lg:hidden"
+            style={{
+              height: 'calc(100% + 41px)',
+              width: 'auto',
+              left: '-50px',
+              top: '0',
+              zIndex: 1,
+              objectFit: 'cover',
+              objectPosition: 'left top',
+            }}
+          />
+          {/* Body Scan Image - Mobile */}
+          <img 
+            src={assetPath('assets/howitworks-scan.png')} 
+            alt={t.howItWorks.imageAlt}
+            className="steps-image absolute md:hidden"
+            style={{
+              width: '70vw',
+              height: 'auto',
+              left: '-20px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              zIndex: 1,
+              objectFit: 'contain',
+            }}
+          />
           
-          {/* Step Description */}
-          <p 
-            className="step-description font-['Inter',sans-serif] font-normal text-black"
+          {/* Step Content - Right Side */}
+          <div 
+            className="steps-content absolute right-0 top-0 h-full flex flex-col justify-center px-4 sm:px-0"
             style={{
-              fontSize: 'clamp(13px, 1.6vw, 24px)',
-              lineHeight: '1.3',
-              marginBottom: 'clamp(15px, 4vh, 40px)',
+              width: '100%',
+              padding: 'clamp(15px, 4vh, 40px) clamp(10px, 3vw, 30px) clamp(15px, 4vh, 40px) clamp(10px, 3vw, 0px)',
             }}
-            key={`desc-${currentStep}`}
           >
-            {currentStepData.description}
-          </p>
-        
-          {/* Step Indicators */}
-          <div className="flex items-center gap-2">
-            {stepsData.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentStep(index)}
-                className={`rounded-full transition-all duration-300 ${
-                  index === currentStep ? 'bg-black' : 'bg-gray-300 hover:bg-gray-400'
-                }`}
-                style={{
-                  width: index === currentStep ? '24px' : '8px',
-                  height: '8px',
-                }}
-                aria-label={`Go to step ${index + 1}`}
-              />
-            ))}
+            <div className="sm:ml-auto sm:w-[60%] md:w-[50%] lg:w-[420px]">
+              {/* Step Title - Fixed height container */}
+              <div style={{ minHeight: 'clamp(80px, 12vh, 120px)' }}>
+                <h3 
+                  className="step-title font-['Inter',sans-serif] font-normal text-black whitespace-pre-line"
+                  style={{
+                    fontSize: 'clamp(18px, 2.5vw, 40px)',
+                    lineHeight: '1.21',
+                    marginBottom: 'clamp(6px, 2vh, 16px)',
+                  }}
+                  key={`title-${currentStep}`}
+                >
+                  {currentStepData.number} {currentStepData.title}
+                </h3>
+              </div>
+              
+              {/* Step Description - Fixed height container */}
+              <div style={{ minHeight: 'clamp(100px, 15vh, 150px)' }}>
+                <p 
+                  className="step-description font-['Inter',sans-serif] font-normal text-black"
+                  style={{
+                    fontSize: 'clamp(13px, 1.6vw, 24px)',
+                    lineHeight: '1.3',
+                    marginBottom: 'clamp(15px, 4vh, 40px)',
+                  }}
+                  key={`desc-${currentStep}`}
+                >
+                  {currentStepData.description}
+                </p>
+              </div>
+            
+              {/* Step Indicators */}
+              <div className="flex items-center gap-2">
+                {stepsData.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentStep(index)}
+                    className={`rounded-full transition-all duration-300 ${
+                      index === currentStep ? 'bg-black' : 'bg-gray-300 hover:bg-gray-400'
+                    }`}
+                    style={{
+                      width: index === currentStep ? '24px' : '8px',
+                      height: '8px',
+                    }}
+                    aria-label={`Go to step ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
       
-      {/* Navigation Circles - Positioned on the second card */}
+      {/* Navigation Circles - Positioned on the card */}
       <div 
         className="absolute flex items-center gap-3 z-10"
         style={{
@@ -344,8 +398,8 @@ const HowItWorks = () => {
       className="bg-white" 
       id="join"
       style={{
-        paddingTop: 'clamp(48px, 8vw, 80px)',
-        paddingBottom: 'clamp(48px, 8vw, 80px)'
+        paddingTop: 'clamp(32px, 5vw, 56px)',
+        paddingBottom: 'clamp(32px, 5vw, 56px)'
       }}
     >
       <Container>

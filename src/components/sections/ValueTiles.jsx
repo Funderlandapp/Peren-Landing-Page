@@ -124,8 +124,8 @@ const ValueTiles = () => {
       id="why" 
       className="bg-white"
       style={{
-        paddingTop: 'clamp(48px, 8vw, 96px)',
-        paddingBottom: 'clamp(48px, 8vw, 96px)'
+        paddingTop: 'clamp(32px, 5vw, 56px)',
+        paddingBottom: 'clamp(32px, 5vw, 56px)'
       }}
     >
       <Container>

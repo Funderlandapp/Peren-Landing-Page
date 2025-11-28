@@ -1,4 +1,5 @@
 import React from 'react'
+import Container from '../layout/Container'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../data/translations'
 import { assetPath } from '../../utils/assetPath'
@@ -20,13 +21,12 @@ const HeroSection = () => {
 
   return (
     <section
-      className="relative w-full overflow-hidden"
+      className="relative w-full overflow-hidden bg-white"
       style={{
-        paddingLeft: 'clamp(16px, 4vw, 64px)',
-        paddingRight: 'clamp(16px, 4vw, 64px)',
-        paddingTop: 'clamp(70px, 6vw, 90px)'
+        paddingTop: 'clamp(40px, 4vw, 60px)'
       }}
     >
+      <Container>
       {/* Main Container - Responsive height based on screen width */}
       <div 
         className="hero-container relative w-full"
@@ -143,6 +143,7 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+      </Container>
     </section>
   )
 }

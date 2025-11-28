@@ -42,8 +42,8 @@ const NewsHighlight = () => {
       className="bg-white" 
       id="blog"
       style={{
-        paddingTop: 'clamp(48px, 8vw, 80px)',
-        paddingBottom: 'clamp(48px, 8vw, 80px)'
+        paddingTop: 'clamp(32px, 5vw, 56px)',
+        paddingBottom: 'clamp(32px, 5vw, 56px)'
       }}
     >
       <Container>
