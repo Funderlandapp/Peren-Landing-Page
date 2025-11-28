@@ -20,7 +20,11 @@ const HeroSection = () => {
 
   return (
     <section
-      className="relative w-full overflow-hidden px-4 sm:px-6 md:px-10 lg:px-16 pt-24 sm:pt-28 md:pt-24"
+      className="relative w-full overflow-hidden px-4 sm:px-6 md:px-10 lg:px-16"
+      style={{
+        // Smaller padding top that scales with viewport width
+        paddingTop: 'clamp(60px, 2.5vw, 90px)'
+      }}
     >
       {/* Main Container - Responsive height based on screen width */}
       <div 
@@ -55,7 +59,7 @@ const HeroSection = () => {
           className="absolute hero-image"
           style={{
             // Height scales with viewport width for proportional sizing
-            height: '100%', 
+            height: '150%', 
             width: 'auto',
             bottom: '0', // Anchors to bottom
             left: 'clamp(-100px, -5vw, 0px)', // Slight negative margin on large screens

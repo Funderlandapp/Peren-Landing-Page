@@ -132,24 +132,24 @@ const ValueTiles = () => {
             <div className="relative flex">
               <button
                 onClick={() => setActiveTab('individuals')}
-                className={`group relative flex flex-1 h-16 items-center justify-center text-lg font-medium transition-all duration-300 ${
+                className={`group relative flex flex-1 h-16 items-center justify-center text-base sm:text-lg font-medium transition-all duration-300 ${
                   activeTab === 'individuals' 
                     ? `text-black ${activeColor} rounded-tl-[60px] z-20` 
                     : `bg-white text-gray-500 hover:text-gray-700 rounded-tl-[60px] rounded-br-[60px] z-10`
                 }`}
               >
-                {t.valueTiles.forIndividuals}
+                {language === 'en' ? 'Personal' : 'Personnel'}
               </button>
 
               <button
                 onClick={() => setActiveTab('professionals')}
-                className={`group relative flex flex-1 h-16 items-center justify-center text-lg font-medium transition-all duration-300 ${
+                className={`group relative flex flex-1 h-16 items-center justify-center text-base sm:text-lg font-medium transition-all duration-300 ${
                   activeTab === 'professionals' 
                     ? `text-black ${activeColor} rounded-tr-[60px] z-20` 
                     : `bg-white text-gray-500 hover:text-gray-700 rounded-tr-[60px] rounded-bl-[60px] z-10`
                 }`}
               >
-                {t.valueTiles.forProfessionals}
+                {language === 'en' ? 'Professional' : 'Professionnel'}
               </button>
             </div>
           </div>
@@ -179,15 +179,24 @@ const ValueTiles = () => {
               return (
                 <article key={tile.id} className="flex flex-col group cursor-default">
                   
-                  {/* Visual Container (Image or Icon) */}
-                  <div className="relative flex h-[200px] sm:h-[250px] md:h-[280px] lg:h-[320px] w-full items-center justify-center overflow-hidden">
+                  {/* Visual Container (Image or Icon) - Height scales with viewport width */}
+                  <div 
+                    className="relative flex w-full items-center justify-center overflow-hidden"
+                    style={{
+                      height: 'clamp(180px, 35vw, 320px)'
+                    }}
+                  >
                     {isIndividuals ? (
                       (tile.id === 'perform' || tile.id === 'age' || tile.id === 'balance' || tile.id === 'sync') ? (
                         <img
                           src={tile.image}
                           alt={tile.title}
-                          className="h-[200px] sm:h-[250px] md:h-[280px] lg:h-[320px] w-auto object-contain border-0 outline-none"
-                          style={{ border: 'none', outline: 'none' }}
+                          className="w-auto object-contain border-0 outline-none"
+                          style={{ 
+                            border: 'none', 
+                            outline: 'none',
+                            height: 'clamp(180px, 35vw, 320px)'
+                          }}
                           loading="lazy"
                         />
                       ) : (
@@ -203,8 +212,12 @@ const ValueTiles = () => {
                       <img
                         src={tile.image}
                         alt={tile.title}
-                        className="h-[200px] sm:h-[250px] md:h-[280px] lg:h-[320px] w-auto object-contain border-0 outline-none"
-                        style={{ border: 'none', outline: 'none' }}
+                        className="w-auto object-contain border-0 outline-none"
+                        style={{ 
+                          border: 'none', 
+                          outline: 'none',
+                          height: 'clamp(180px, 35vw, 320px)'
+                        }}
                         loading="lazy"
                       />
                     )}
