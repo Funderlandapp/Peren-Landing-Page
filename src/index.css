@@ -62,3 +62,14 @@ header[class*="fixed"] {
   right: 0 !important;
   width: 100% !important;
 }
+
+/* Hero responsive styles - hide image and center text under 600px */
+@media (max-width: 599px) {
+  .hero-image {
+    display: none !important;
+  }
+  
+  .hero-content {
+    max-width: 90%;
+  }
+}

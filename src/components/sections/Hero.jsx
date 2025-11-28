@@ -22,22 +22,22 @@ const HeroSection = () => {
     <section
       className="relative w-full overflow-hidden px-4 sm:px-6 md:px-10 lg:px-16 pt-24 sm:pt-28 md:pt-24"
     >
-      {/* Main Container - Responsive height */}
+      {/* Main Container - Responsive height based on screen width */}
       <div 
         className="hero-container relative w-full"
         style={{
-          // Height scales with viewport width but has min/max limits
-          height: 'clamp(500px, 85vh, 950px)', 
-          minHeight: '500px'
+          // Height scales with viewport width for better proportions
+          height: 'clamp(450px, 60vw, 900px)', 
+          minHeight: '450px'
         }}
       >
-        {/* Background Card with Gradient - anchors to bottom */}
+        {/* Background Card with Gradient - anchors to bottom, height scales with screen width */}
         <div 
           className="absolute"
           style={{
             width: '100%',
-            // Height adjusts to always be slightly shorter than container (for head overlap effect)
-            height: '85%',
+            // Card height scales with viewport width to maintain proportions
+            height: 'clamp(380px, 50vw, 750px)',
             bottom: '0',
             left: '0',
             right: '0',
@@ -48,14 +48,14 @@ const HeroSection = () => {
           }}
         />
         
-        {/* Hero Image - Woman with mesh overlay */}
+        {/* Hero Image - Woman with mesh overlay, scales with screen width, hidden under 600px */}
         <img 
           src={assetPath('assets/hero-woman.png')} 
           alt={t.hero.imageAlt}
-          className="absolute hidden sm:block"
+          className="absolute hero-image"
           style={{
-            // Height allows head to stick out of card (container height > card height)
-            height: '115%', 
+            // Height scales with viewport width for proportional sizing
+            height: '100%', 
             width: 'auto',
             bottom: '0', // Anchors to bottom
             left: 'clamp(-100px, -5vw, 0px)', // Slight negative margin on large screens
@@ -65,21 +65,24 @@ const HeroSection = () => {
           }}
         />
         
-        {/* Content - Right side on desktop, centered on mobile */}
+        {/* Content - Constrained within card boundaries */}
         <div 
-          className="absolute px-4 sm:px-0"
+          className="absolute px-4 max-[599px]:flex max-[599px]:items-center max-[599px]:justify-center"
           style={{
-            top: '50%',
-            transform: 'translateY(-50%)',
+            // Position content within the card area only
+            bottom: '5%',
+            top: '15%',
             right: '5%',
             left: '5%',
             zIndex: 3,
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
-          <div className="sm:ml-[50%] md:ml-0 md:pl-[50%] lg:pl-[55%]">
+          <div className="hero-content max-[599px]:w-full max-[599px]:max-w-[90%] max-[599px]:text-center min-[600px]:ml-[50%] md:ml-0 md:pl-[50%] lg:pl-[55%] max-[599px]:py-4">
             {/* Main Title - responsive font size */}
             <h1 
-              className="font-inter font-normal text-black text-center sm:text-left"
+              className="font-inter font-normal text-black max-[599px]:text-center min-[600px]:text-left"
               style={{
                 fontSize: 'clamp(28px, 5vw, 72px)',
                 lineHeight: '1.1',
@@ -98,7 +101,7 @@ const HeroSection = () => {
             
             {/* Subtitle - responsive font size */}
             <p 
-              className="font-inter font-light text-black text-center sm:text-left"
+              className="font-inter font-light text-black max-[599px]:text-center min-[600px]:text-left"
               style={{
                 fontSize: 'clamp(13px, 1.5vw, 24px)',
                 lineHeight: '1.5',
@@ -114,7 +117,7 @@ const HeroSection = () => {
             </p>
             
             {/* CTA Button - responsive sizing */}
-            <div className="flex justify-center sm:justify-start">
+            <div className="flex max-[599px]:justify-center min-[600px]:justify-start">
               <a
                 href={TYPEFORM_URL}
                 target="_blank"
