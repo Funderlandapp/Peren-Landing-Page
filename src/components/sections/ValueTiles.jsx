@@ -120,34 +120,60 @@ const ValueTiles = () => {
     : 'bg-gradient-to-b from-[#E6D7F0] to-[#F5F5DC]'
 
   return (
-    <section id="why" className="py-12 sm:py-16 lg:py-24 bg-white">
+    <section 
+      id="why" 
+      className="bg-white"
+      style={{
+        paddingTop: 'clamp(48px, 8vw, 96px)',
+        paddingBottom: 'clamp(48px, 8vw, 96px)'
+      }}
+    >
       <Container>
         <div className="w-full">
           
           {/* Tabs Area - Full Width */}
           <div className="relative z-10 -mb-[1px]">
             {/* Background element with active section color - behind the tabs */}
-            <div className={`absolute inset-0 h-16 ${activeTab === 'individuals' ? 'bg-[#F5F5DC]' : 'bg-[#E6D7F0]'} rounded-tl-[60px] rounded-tr-[60px]`} />
+            <div 
+              className={`absolute inset-0 ${activeTab === 'individuals' ? 'bg-[#F5F5DC]' : 'bg-[#E6D7F0]'}`}
+              style={{
+                height: 'clamp(56px, 6vw, 64px)',
+                borderTopLeftRadius: 'clamp(40px, 6vw, 60px)',
+                borderTopRightRadius: 'clamp(40px, 6vw, 60px)'
+              }}
+            />
             
             <div className="relative flex">
               <button
                 onClick={() => setActiveTab('individuals')}
-                className={`group relative flex flex-1 h-16 items-center justify-center text-base sm:text-lg font-medium transition-all duration-300 ${
+                className={`group relative flex flex-1 items-center justify-center font-medium transition-all duration-300 ${
                   activeTab === 'individuals' 
-                    ? `text-black ${activeColor} rounded-tl-[60px] z-20` 
-                    : `bg-white text-gray-500 hover:text-gray-700 rounded-tl-[60px] rounded-br-[60px] z-10`
+                    ? `text-black ${activeColor} z-20` 
+                    : `bg-white text-gray-500 hover:text-gray-700 z-10`
                 }`}
+                style={{
+                  height: 'clamp(56px, 6vw, 64px)',
+                  fontSize: 'clamp(14px, 1.8vw, 18px)',
+                  borderTopLeftRadius: 'clamp(40px, 6vw, 60px)',
+                  borderBottomRightRadius: activeTab === 'individuals' ? '0' : 'clamp(40px, 6vw, 60px)'
+                }}
               >
                 {language === 'en' ? 'Personal' : 'Personnel'}
               </button>
 
               <button
                 onClick={() => setActiveTab('professionals')}
-                className={`group relative flex flex-1 h-16 items-center justify-center text-base sm:text-lg font-medium transition-all duration-300 ${
+                className={`group relative flex flex-1 items-center justify-center font-medium transition-all duration-300 ${
                   activeTab === 'professionals' 
-                    ? `text-black ${activeColor} rounded-tr-[60px] z-20` 
-                    : `bg-white text-gray-500 hover:text-gray-700 rounded-tr-[60px] rounded-bl-[60px] z-10`
+                    ? `text-black ${activeColor} z-20` 
+                    : `bg-white text-gray-500 hover:text-gray-700 z-10`
                 }`}
+                style={{
+                  height: 'clamp(56px, 6vw, 64px)',
+                  fontSize: 'clamp(14px, 1.8vw, 18px)',
+                  borderTopRightRadius: 'clamp(40px, 6vw, 60px)',
+                  borderBottomLeftRadius: activeTab === 'professionals' ? '0' : 'clamp(40px, 6vw, 60px)'
+                }}
               >
                 {language === 'en' ? 'Professional' : 'Professionnel'}
               </button>
@@ -155,24 +181,57 @@ const ValueTiles = () => {
           </div>
 
         {/* Main Content Card - Full Width */}
-        <div className={`relative z-20 w-full overflow-hidden rounded-b-[60px] px-4 py-8 sm:px-8 sm:py-12 md:px-12 md:py-16 lg:px-20 lg:py-20 ${gradientClasses}`}>
+        <div 
+          className={`relative z-20 w-full overflow-hidden ${gradientClasses}`}
+          style={{
+            borderBottomLeftRadius: 'clamp(40px, 6vw, 60px)',
+            borderBottomRightRadius: 'clamp(40px, 6vw, 60px)',
+            padding: 'clamp(32px, 6vw, 80px) clamp(16px, 4vw, 80px)'
+          }}
+        >
           
           {/* Main Heading */}
-          <div className="mb-10 sm:mb-16 text-center">
-            <h2 className="mx-auto max-w-4xl font-['Inter',sans-serif] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[42px] font-normal leading-tight text-black px-2">
+          <div 
+            className="text-center"
+            style={{
+              marginBottom: 'clamp(40px, 6vw, 64px)'
+            }}
+          >
+            <h2 
+              className="mx-auto max-w-4xl font-['Inter',sans-serif] font-normal leading-tight text-black px-2"
+              style={{
+                fontSize: 'clamp(20px, 3.5vw, 42px)'
+              }}
+            >
               {getHeading()}
             </h2>
           </div>
 
           {/* "Why Peren" Label */}
-          <div className="mb-8 sm:mb-12 flex justify-center">
-            <span className="rounded-full px-3 py-1 font-['Inter',sans-serif] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[42px] font-normal text-black">
+          <div 
+            className="flex justify-center"
+            style={{
+              marginBottom: 'clamp(32px, 5vw, 48px)'
+            }}
+          >
+            <span 
+              className="rounded-full font-['Inter',sans-serif] font-normal text-black"
+              style={{
+                fontSize: 'clamp(20px, 3.5vw, 42px)',
+                padding: 'clamp(4px, 0.5vw, 8px) clamp(12px, 2vw, 16px)'
+              }}
+            >
               {t.nav.whyPeren}
             </span>
           </div>
 
           {/* Content Grid - Full Width */}
-          <div className="grid gap-x-6 gap-y-10 sm:gap-x-8 sm:gap-y-12 md:grid-cols-2 md:gap-x-12 md:gap-y-16 lg:gap-x-20">
+          <div 
+            className="grid md:grid-cols-2"
+            style={{
+              gap: 'clamp(40px, 6vw, 80px) clamp(24px, 4vw, 48px)'
+            }}
+          >
             {(activeTab === 'individuals' ? valueTiles : professionalsTiles).map((tile) => {
               const isIndividuals = activeTab === 'individuals'
               
@@ -224,17 +283,46 @@ const ValueTiles = () => {
                   </div>
 
                   {/* Text Content */}
-                  <div className="flex items-start justify-between gap-2 sm:gap-4 mt-3 sm:mt-4">
-                    <div className="flex-1 space-y-1 sm:space-y-2">
-                      <h3 className="whitespace-pre-line font-['Inter',sans-serif] text-lg sm:text-xl md:text-2xl font-bold uppercase leading-tight text-black">
+                  <div 
+                    className="flex items-start justify-between"
+                    style={{
+                      gap: 'clamp(8px, 2vw, 16px)',
+                      marginTop: 'clamp(12px, 2vw, 16px)'
+                    }}
+                  >
+                    <div 
+                      className="flex-1"
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 'clamp(4px, 1vw, 8px)'
+                      }}
+                    >
+                      <h3 
+                        className="whitespace-pre-line font-['Inter',sans-serif] font-bold uppercase leading-tight text-black"
+                        style={{
+                          fontSize: 'clamp(16px, 2.2vw, 24px)'
+                        }}
+                      >
                         {tile.title}
                       </h3>
-                      <p className="max-w-sm font-['Inter',sans-serif] text-sm sm:text-base md:text-lg text-gray-800 leading-relaxed">
+                      <p 
+                        className="max-w-sm font-['Inter',sans-serif] text-gray-800 leading-relaxed"
+                        style={{
+                          fontSize: 'clamp(13px, 1.6vw, 18px)'
+                        }}
+                      >
                         {tile.description}
                       </p>
                     </div>
-                    <div className="flex items-center justify-center flex-shrink-0">
-                      <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6 text-black" />
+                    <div 
+                      className="flex items-center justify-center flex-shrink-0"
+                      style={{
+                        width: 'clamp(20px, 3vw, 24px)',
+                        height: 'clamp(20px, 3vw, 24px)'
+                      }}
+                    >
+                      <ArrowRight className="w-full h-full text-black" />
                     </div>
                   </div>
                 </article>

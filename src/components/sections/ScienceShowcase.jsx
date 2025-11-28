@@ -6,9 +6,37 @@ import { assetPath } from '../../utils/assetPath'
 import { TYPEFORM_URL } from '../../constants/links'
 
 const ScienceCard = ({ title, image }) => (
-  <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 rounded-[22px] border border-black bg-white p-3 aspect-square min-w-full md:min-w-[50%] lg:min-w-[33.333%]" style={{ borderWidth: '1px' }}>
-    <img src={image} alt={`${title} visualization`} className="h-28 w-28 sm:h-32 sm:w-32 md:h-36 md:w-36 lg:h-40 lg:w-40 object-contain" loading="lazy" />
-    <p className="font-['Inter',sans-serif] text-base sm:text-lg md:text-xl font-medium text-black">{title}</p>
+  <div 
+    className="flex flex-col items-center justify-center border border-black bg-white" 
+    style={{ 
+      borderWidth: '1px',
+      borderRadius: 'clamp(16px, 2vw, 22px)',
+      gap: 'clamp(12px, 1.5vw, 16px)',
+      padding: 'clamp(12px, 2vw, 16px)',
+      minWidth: '100%',
+      width: '100%',
+      height: 'clamp(250px, 35vw, 400px)',
+      aspectRatio: '1 / 1'
+    }}
+  >
+    <img 
+      src={image} 
+      alt={`${title} visualization`} 
+      className="object-contain" 
+      style={{
+        width: 'clamp(100px, 15vw, 160px)',
+        height: 'clamp(100px, 15vw, 160px)'
+      }}
+      loading="lazy" 
+    />
+    <p 
+      className="font-['Inter',sans-serif] font-medium text-black"
+      style={{
+        fontSize: 'clamp(14px, 1.8vw, 20px)'
+      }}
+    >
+      {title}
+    </p>
   </div>
 )
 
@@ -16,9 +44,13 @@ const ArrowButton = ({ direction, onClick, disabled }) => (
   <button
     onClick={onClick}
     disabled={disabled}
-    className={`flex h-10 w-10 items-center justify-center rounded-full border border-black bg-white transition-colors ${
+    className={`flex items-center justify-center rounded-full border border-black bg-white transition-colors ${
       disabled ? 'opacity-30 cursor-not-allowed' : 'hover:bg-gray-50'
     }`}
+    style={{
+      width: 'clamp(36px, 4vw, 42px)',
+      height: 'clamp(36px, 4vw, 42px)'
+    }}
     aria-label={`${direction === 'left' ? 'Previous' : 'Next'}`}
   >
     <svg
@@ -50,16 +82,18 @@ const ScienceShowcase = () => {
     { title: t.science.cards.hormones, image: assetPath('assets/science-hormones.png') },
   ]
 
-  // Determine cards per view based on screen width
+  // Determine cards per view based on screen width with peek effect
   useEffect(() => {
     const updateCardsPerView = () => {
       const width = window.innerWidth
-      if (width >= 1024) {
-        setCardsPerView(3) // Desktop: show all 3
-      } else if (width >= 768) {
-        setCardsPerView(2) // Tablet: show 2
+      if (width >= 1200) {
+        setCardsPerView(3) // Large desktop: show all 3
+      } else if (width >= 900) {
+        setCardsPerView(2.5) // Desktop: show 2 full + halves on sides
+      } else if (width >= 600) {
+        setCardsPerView(1.5) // Tablet: show 1 full + halves on sides
       } else {
-        setCardsPerView(1) // Mobile: show 1
+        setCardsPerView(1.2) // Mobile: show 1 full + small peek on sides
       }
     }
 
@@ -113,20 +147,54 @@ const ScienceShowcase = () => {
   const currentCardIndex = ((offset - startOffset) % scienceCards.length + scienceCards.length) % scienceCards.length
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-white" id="science">
+    <section 
+      className="bg-white" 
+      id="science"
+      style={{
+        paddingTop: 'clamp(48px, 8vw, 80px)',
+        paddingBottom: 'clamp(48px, 8vw, 80px)'
+      }}
+    >
       <Container>
-        <div className="flex flex-col items-center gap-8 sm:gap-12">
+        <div 
+          className="flex flex-col items-center"
+          style={{
+            gap: 'clamp(32px, 6vw, 48px)'
+          }}
+        >
           {/* Pilot Program Card */}
-          <div className="w-full max-w-4xl rounded-[22px] border border-black bg-white px-4 py-8 sm:px-8 sm:py-12 md:px-12 md:py-16">
-            <div className="flex flex-col items-center gap-4 sm:gap-6">
-              <h3 className="text-center font-['Inter',sans-serif] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[40px] font-normal text-black px-2">
+          <div 
+            className="w-full max-w-4xl border border-black bg-white"
+            style={{
+              borderRadius: 'clamp(16px, 2vw, 22px)',
+              padding: 'clamp(32px, 6vw, 64px) clamp(16px, 4vw, 48px)'
+            }}
+          >
+            <div 
+              className="flex flex-col items-center"
+              style={{
+                gap: 'clamp(16px, 3vw, 24px)'
+              }}
+            >
+              <h3 
+                className="text-center font-['Inter',sans-serif] font-normal text-black px-2"
+                style={{
+                  fontSize: 'clamp(20px, 3.5vw, 40px)',
+                  lineHeight: '1.2'
+                }}
+              >
                 {t.science.kicker}
               </h3>
               <a
                 href={TYPEFORM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-[10px] bg-black px-8 py-3.5 font-['Inter',sans-serif] text-base font-medium text-white transition-colors hover:opacity-90"
+                className="inline-flex items-center justify-center bg-black font-['Inter',sans-serif] font-medium text-white transition-colors hover:opacity-90"
+                style={{
+                  borderRadius: 'clamp(8px, 1vw, 10px)',
+                  padding: 'clamp(12px, 1.5vw, 14px) clamp(24px, 4vw, 32px)',
+                  fontSize: 'clamp(14px, 1.6vw, 16px)'
+                }}
               >
                 {t.science.cta}
               </a>
@@ -136,8 +204,19 @@ const ScienceShowcase = () => {
           {/* Main Content */}
           <div className="w-full">
             {/* Heading Section */}
-            <div className="mb-6 sm:mb-8 text-center px-2">
-              <h2 className="font-['Inter',sans-serif] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[40px] font-normal text-black">
+            <div 
+              className="text-center px-2"
+              style={{
+                marginBottom: 'clamp(24px, 4vw, 32px)'
+              }}
+            >
+              <h2 
+                className="font-['Inter',sans-serif] font-normal text-black"
+                style={{
+                  fontSize: 'clamp(20px, 3.5vw, 40px)',
+                  lineHeight: '1.2'
+                }}
+              >
                 {t.science.title.split('. ').map((line, index, array) => (
                   <span key={index}>
                     {line}
@@ -146,24 +225,42 @@ const ScienceShowcase = () => {
                   </span>
                 ))}
               </h2>
-              <p className="mt-3 sm:mt-4 font-['Inter',sans-serif] text-base sm:text-lg md:text-xl font-medium text-black">
+              <p 
+                className="font-['Inter',sans-serif] font-medium text-black"
+                style={{
+                  marginTop: 'clamp(12px, 2vw, 16px)',
+                  fontSize: 'clamp(14px, 1.8vw, 20px)'
+                }}
+              >
                 {t.science.label}
               </p>
             </div>
 
-            {/* Cards Carousel - Infinite scroll like a digital clock */}
-            <div className="mb-6 sm:mb-8 relative overflow-hidden">
+            {/* Cards Carousel - Infinite scroll like a digital clock with peek effect */}
+            <div 
+              className="relative overflow-hidden"
+              style={{
+                marginBottom: 'clamp(24px, 4vw, 32px)'
+              }}
+            >
               <div 
                 className="flex"
                 style={{
-                  transform: `translateX(-${(offset * 100) / cardsPerView}%)`,
+                  transform: (() => {
+                    const cardWidth = 100 / cardsPerView
+                    const peekOffset = (100 - cardWidth) / 2
+                    return `translateX(calc(-${offset * cardWidth}% + ${peekOffset}%))`
+                  })(),
                   transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none'
                 }}
               >
                 {infiniteCards.map((card, idx) => (
                   <div 
                     key={`${card.title}-${idx}`}
-                    className="min-w-full md:min-w-[50%] lg:min-w-[33.333%] px-2"
+                    style={{
+                      minWidth: `${100 / cardsPerView}%`,
+                      padding: '0 clamp(8px, 1vw, 12px)'
+                    }}
                   >
                     <ScienceCard {...card} />
                   </div>
@@ -171,7 +268,13 @@ const ScienceShowcase = () => {
               </div>
               
               {/* Pagination Dots - Shows current card in the cycle */}
-              <div className="flex justify-center gap-2 mt-4">
+              <div 
+                className="flex justify-center"
+                style={{
+                  gap: 'clamp(6px, 1vw, 8px)',
+                  marginTop: 'clamp(12px, 2vw, 16px)'
+                }}
+              >
                 {scienceCards.map((_, index) => (
                   <button
                     key={index}
@@ -180,8 +283,12 @@ const ScienceShowcase = () => {
                       setOffset(startOffset + index)
                     }}
                     className={`rounded-full transition-all duration-300 ${
-                      index === currentCardIndex ? 'bg-black w-6 h-2' : 'bg-gray-300 w-2 h-2'
+                      index === currentCardIndex ? 'bg-black' : 'bg-gray-300'
                     }`}
+                    style={{
+                      width: index === currentCardIndex ? 'clamp(20px, 3vw, 24px)' : 'clamp(6px, 1vw, 8px)',
+                      height: 'clamp(6px, 1vw, 8px)'
+                    }}
                     aria-label={`Go to card ${index + 1}`}
                   />
                 ))}
@@ -189,11 +296,26 @@ const ScienceShowcase = () => {
             </div>
 
             {/* Discover Section with Navigation */}
-            <div className="flex items-center justify-between px-2">
-              <p className="font-['Inter',sans-serif] text-sm sm:text-base md:text-lg text-black">
+            <div 
+              className="flex items-center justify-between px-2"
+              style={{
+                gap: 'clamp(12px, 2vw, 16px)'
+              }}
+            >
+              <p 
+                className="font-['Inter',sans-serif] text-black"
+                style={{
+                  fontSize: 'clamp(12px, 1.6vw, 18px)'
+                }}
+              >
                 {t.science.caption}
               </p>
-              <div className="flex gap-2 flex-shrink-0">
+              <div 
+                className="flex flex-shrink-0"
+                style={{
+                  gap: 'clamp(6px, 1vw, 8px)'
+                }}
+              >
                 <ArrowButton 
                   direction="left" 
                   onClick={goToPrevious}

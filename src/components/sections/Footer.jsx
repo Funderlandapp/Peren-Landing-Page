@@ -4,10 +4,28 @@ import { translations } from '../../data/translations'
 import { footerContent } from '../../data/landingContent'
 
 const FooterLogo = () => (
-  <div className="flex flex-col items-center gap-3">
+  <div 
+    className="flex flex-col items-center"
+    style={{
+      gap: 'clamp(10px, 1.5vw, 12px)'
+    }}
+  >
     <div className="relative flex items-center justify-center">
-      <span className="absolute inline-flex h-12 w-12 rounded-full border-2 border-black"></span>
-      <span className="relative ml-8 inline-flex h-12 w-12 rounded-full bg-black"></span>
+      <span 
+        className="absolute inline-flex rounded-full border-2 border-black"
+        style={{
+          width: 'clamp(40px, 5vw, 48px)',
+          height: 'clamp(40px, 5vw, 48px)'
+        }}
+      ></span>
+      <span 
+        className="relative rounded-full bg-black"
+        style={{
+          width: 'clamp(40px, 5vw, 48px)',
+          height: 'clamp(40px, 5vw, 48px)',
+          marginLeft: 'clamp(28px, 3.5vw, 32px)'
+        }}
+      ></span>
     </div>
   </div>
 )
@@ -17,19 +35,69 @@ const SocialCard = ({ label, handle, description, icon, href }) => (
     href={href}
     target="_blank"
     rel="noreferrer"
-    className="flex h-full flex-col rounded-[20px] sm:rounded-[32px] border border-gray-300 bg-white px-4 py-4 sm:px-6 sm:py-6 text-left transition-colors duration-300 hover:border-gray-400 hover:shadow-sm"
+    className="flex h-full flex-col border border-gray-300 bg-white text-left transition-colors duration-300 hover:border-gray-400 hover:shadow-sm"
+    style={{
+      borderRadius: 'clamp(20px, 3vw, 32px)',
+      padding: 'clamp(16px, 3vw, 24px)'
+    }}
   >
-    <div className="flex items-start justify-between gap-2 sm:gap-4">
-      <p className="text-sm sm:text-base font-semibold text-gray-900">{label}</p>
-      <p className="text-xs sm:text-sm text-gray-600">{handle}</p>
+    <div 
+      className="flex items-start justify-between"
+      style={{
+        gap: 'clamp(8px, 2vw, 16px)'
+      }}
+    >
+      <p 
+        className="font-semibold text-gray-900"
+        style={{
+          fontSize: 'clamp(13px, 1.6vw, 16px)'
+        }}
+      >
+        {label}
+      </p>
+      <p 
+        className="text-gray-600"
+        style={{
+          fontSize: 'clamp(11px, 1.4vw, 14px)'
+        }}
+      >
+        {handle}
+      </p>
     </div>
     {description && (
-      <p className="mt-3 sm:mt-4 text-xs sm:text-sm font-medium text-gray-900">{description}</p>
+      <p 
+        className="font-medium text-gray-900"
+        style={{
+          marginTop: 'clamp(12px, 2vw, 16px)',
+          fontSize: 'clamp(11px, 1.4vw, 14px)'
+        }}
+      >
+        {description}
+      </p>
     )}
     {icon && (
-      <div className="mt-6 sm:mt-8 flex flex-1 items-center justify-center">
-        <span className="inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-gray-100">
-          <img src={icon} alt={`${label} icon`} className="h-5 w-5 sm:h-6 sm:w-6 grayscale" />
+      <div 
+        className="flex flex-1 items-center justify-center"
+        style={{
+          marginTop: 'clamp(24px, 4vw, 32px)'
+        }}
+      >
+        <span 
+          className="inline-flex items-center justify-center rounded-full bg-gray-100"
+          style={{
+            width: 'clamp(40px, 5vw, 48px)',
+            height: 'clamp(40px, 5vw, 48px)'
+          }}
+        >
+          <img 
+            src={icon} 
+            alt={`${label} icon`} 
+            className="grayscale"
+            style={{
+              width: 'clamp(20px, 2.5vw, 24px)',
+              height: 'clamp(20px, 2.5vw, 24px)'
+            }}
+          />
         </span>
       </div>
     )}
@@ -95,13 +163,48 @@ const Footer = () => {
   ]
 
   return (
-    <footer id="contact" className="bg-white py-12 sm:py-16 md:py-20 text-gray-900">
-      <Container className="flex flex-col items-center gap-8 sm:gap-12 text-center">
+    <footer 
+      id="contact" 
+      className="bg-white text-gray-900"
+      style={{
+        paddingTop: 'clamp(48px, 8vw, 80px)',
+        paddingBottom: 'clamp(48px, 8vw, 80px)'
+      }}
+    >
+      <Container 
+        className="flex flex-col items-center text-center"
+        style={{
+          gap: 'clamp(32px, 6vw, 48px)'
+        }}
+      >
         {/* Top Section: Large Black Rounded Rectangle */}
-        <div className="w-full rounded-[40px] sm:rounded-[60px] bg-black px-4 py-10 sm:px-8 sm:py-16 md:px-12 md:py-20">
-          <div className="flex flex-col items-center gap-4 sm:gap-6 text-center text-white">
-            <h2 className="text-lg sm:text-xl md:text-2xl font-normal text-white">PEREN AI</h2>
-            <p className="max-w-3xl text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight text-white whitespace-pre-line px-2">
+        <div 
+          className="w-full bg-black"
+          style={{
+            borderRadius: 'clamp(40px, 6vw, 60px)',
+            padding: 'clamp(40px, 8vw, 80px) clamp(16px, 4vw, 48px)'
+          }}
+        >
+          <div 
+            className="flex flex-col items-center text-center text-white"
+            style={{
+              gap: 'clamp(16px, 3vw, 24px)'
+            }}
+          >
+            <h2 
+              className="font-normal text-white"
+              style={{
+                fontSize: 'clamp(16px, 2.2vw, 24px)'
+              }}
+            >
+              PEREN AI
+            </h2>
+            <p 
+              className="max-w-3xl leading-tight text-white whitespace-pre-line px-2"
+              style={{
+                fontSize: 'clamp(18px, 3.5vw, 36px)'
+              }}
+            >
               <span className="font-bold">{boldPart}</span>
               {normalPart && (
                 <>
@@ -112,7 +215,11 @@ const Footer = () => {
             </p>
             <a
               href={footerContent.contactHref}
-              className="mt-2 sm:mt-4 text-sm sm:text-base md:text-lg font-medium text-white underline-offset-4 hover:underline"
+              className="font-medium text-white underline-offset-4 hover:underline"
+              style={{
+                marginTop: 'clamp(8px, 2vw, 16px)',
+                fontSize: 'clamp(12px, 1.6vw, 18px)'
+              }}
             >
               {t.footer.contactLabel}
             </a>
@@ -120,26 +227,60 @@ const Footer = () => {
         </div>
 
         {/* Middle Section: Logo and Slogan */}
-        <div className="flex flex-col items-center gap-4 sm:gap-6 px-4">
+        <div 
+          className="flex flex-col items-center px-4"
+          style={{
+            gap: 'clamp(16px, 3vw, 24px)'
+          }}
+        >
           <FooterLogo />
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl italic text-black">
+          <p 
+            className="italic text-black"
+            style={{
+              fontSize: 'clamp(18px, 3.5vw, 36px)'
+            }}
+          >
             {t.footer.statement.replace(' — ', ' ')}
           </p>
         </div>
 
         {/* Bottom Section: Social Cards */}
-        <div className="grid w-full gap-4 sm:gap-6 md:grid-cols-3">
+        <div 
+          className="grid w-full md:grid-cols-3"
+          style={{
+            gap: 'clamp(16px, 3vw, 24px)'
+          }}
+        >
           {socialCards.map((card) => (
             <SocialCard key={card.label} {...card} />
           ))}
         </div>
 
         {/* Footer Bottom: Copyright and Legal Links */}
-        <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm text-gray-700 px-4">
+        <div 
+          className="text-gray-700 px-4"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 'clamp(12px, 2vw, 16px)',
+            fontSize: 'clamp(10px, 1.4vw, 14px)'
+          }}
+        >
           <p>{t.footer.copyright}</p>
-          <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-2">
+          <div 
+            className="flex flex-wrap items-center justify-center"
+            style={{
+              gap: 'clamp(4px, 1vw, 8px)'
+            }}
+          >
             {legalItems.map((item, index) => (
-              <span key={item} className="flex items-center gap-1 sm:gap-2 uppercase tracking-wider">
+              <span 
+                key={item} 
+                className="flex items-center uppercase tracking-wider"
+                style={{
+                  gap: 'clamp(4px, 1vw, 8px)'
+                }}
+              >
                 <span>{item}</span>
                 {index < legalItems.length - 1 && <span className="text-gray-500">-</span>}
               </span>

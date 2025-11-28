@@ -20,10 +20,11 @@ const HeroSection = () => {
 
   return (
     <section
-      className="relative w-full overflow-hidden px-4 sm:px-6 md:px-10 lg:px-16"
+      className="relative w-full overflow-hidden"
       style={{
-        // Smaller padding top that scales with viewport width
-        paddingTop: 'clamp(60px, 2.5vw, 90px)'
+        paddingLeft: 'clamp(16px, 4vw, 64px)',
+        paddingRight: 'clamp(16px, 4vw, 64px)',
+        paddingTop: 'clamp(70px, 6vw, 90px)'
       }}
     >
       {/* Main Container - Responsive height based on screen width */}
@@ -131,9 +132,9 @@ const HeroSection = () => {
                   fontSize: 'clamp(12px, 1.2vw, 19px)',
                   lineHeight: '1.21',
                   padding: 'clamp(12px, 1.5vw, 20px) clamp(20px, 3vw, 40px)',
-                  borderRadius: '14px',
+                  borderRadius: 'clamp(10px, 1.2vw, 14px)',
                   minWidth: 'clamp(160px, 18vw, 250px)',
-                  height: 'clamp(44px, 6vh, 64px)',
+                  height: 'clamp(44px, 5vw, 64px)',
                 }}
               >
                 {t.hero.cta}

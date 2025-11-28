@@ -3,21 +3,65 @@ import Container from '../layout/Container'
 import { simulationPillars } from '../../data/landingContent'
 
 const SimulationPillars = () => (
-  <section className="py-section" id="simulations">
+  <section 
+    id="simulations"
+    style={{
+      paddingTop: 'clamp(48px, 8vw, 80px)',
+      paddingBottom: 'clamp(48px, 8vw, 80px)'
+    }}
+  >
     <Container>
-      <div className="rounded-[55px] border border-peren-ink/15 bg-white/95 px-6 py-10 text-center shadow-card backdrop-blur">
-        <p className="text-body-md uppercase tracking-[0.4em] text-peren-midnight">Simulations</p>
-        <h3 className="mt-4 text-display-sm font-normal text-peren-midnight">
+      <div 
+        className="border border-peren-ink/15 bg-white/95 text-center shadow-card backdrop-blur"
+        style={{
+          borderRadius: 'clamp(40px, 6vw, 55px)',
+          padding: 'clamp(32px, 5vw, 40px) clamp(24px, 4vw, 32px)'
+        }}
+      >
+        <p 
+          className="uppercase tracking-[0.4em] text-peren-midnight"
+          style={{
+            fontSize: 'clamp(13px, 1.6vw, 15px)'
+          }}
+        >
+          Simulations
+        </p>
+        <h3 
+          className="font-normal text-peren-midnight"
+          style={{
+            marginTop: 'clamp(12px, 2vw, 16px)',
+            fontSize: 'clamp(28px, 4vw, 40px)'
+          }}
+        >
           Health checkup, anywhere, anytime
         </h3>
-        <p className="mt-3 text-body-md text-peren-midnight/80">
+        <p 
+          className="text-peren-midnight/80"
+          style={{
+            marginTop: 'clamp(10px, 1.5vw, 12px)',
+            fontSize: 'clamp(13px, 1.6vw, 15px)'
+          }}
+        >
           AI pipelines orchestrate smart simulations and daily harmonization loops so you never drift
           off balance.
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-body-md font-semibold text-peren-ink">
+        <div 
+          className="flex flex-wrap items-center justify-center font-semibold text-peren-ink"
+          style={{
+            marginTop: 'clamp(28px, 4vw, 32px)',
+            gap: 'clamp(10px, 2vw, 12px)',
+            fontSize: 'clamp(13px, 1.6vw, 15px)'
+          }}
+        >
           {simulationPillars.map((pillar, index) => (
             <Fragment key={pillar}>
-              <span className="rounded-pill border border-peren-ink/20 px-6 py-3">
+              <span 
+                className="border border-peren-ink/20"
+                style={{
+                  borderRadius: 'clamp(100px, 20vw, 207.5px)',
+                  padding: 'clamp(10px, 1.5vw, 12px) clamp(20px, 3vw, 24px)'
+                }}
+              >
                 {pillar}
               </span>
               {index < simulationPillars.length - 1 && (

@@ -340,7 +340,14 @@ const HowItWorks = () => {
   const t = translations[language]
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-white" id="join">
+    <section 
+      className="bg-white" 
+      id="join"
+      style={{
+        paddingTop: 'clamp(48px, 8vw, 80px)',
+        paddingBottom: 'clamp(48px, 8vw, 80px)'
+      }}
+    >
       <Container>
         {/* HOW IT WORKS SECTION */}
         <div 
