@@ -20,7 +20,7 @@ export const translations = {
       },
       perform: {
         title: 'PERFORM\nBETTER',
-        description: 'Optimize energy, focus, and resilience',
+        description: 'Optimise energy, focus, and resilience',
       },
       balance: {
         title: 'BALANCE\nMIND & BODY',

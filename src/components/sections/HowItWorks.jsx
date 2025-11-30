@@ -26,19 +26,19 @@ const ChevronRight = () => (
 const Arrow = ({ className = "" }) => (
   <>
     {/* Horizontal Arrow for larger screens (>= 768px) */}
-    <svg 
-      width="23" 
-      height="12" 
-      viewBox="0 0 23 12" 
-      fill="none" 
+  <svg 
+    width="23" 
+    height="12" 
+    viewBox="0 0 23 12" 
+    fill="none" 
       className={`flex-shrink-0 hidden md:block ${className}`}
-    >
-      <path 
-        d="M0 6H21M21 6L16 1M21 6L16 11" 
-        stroke="black" 
-        strokeWidth="2"
-      />
-    </svg>
+  >
+    <path 
+      d="M0 6H21M21 6L16 1M21 6L16 11" 
+      stroke="black" 
+      strokeWidth="2"
+    />
+  </svg>
     {/* Vertical Arrow for small screens (< 768px) */}
     <svg 
       width="12" 
@@ -244,110 +244,81 @@ const HowItWorksSteps = () => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-          {/* Body Scan Image - Desktop */}
-          <img 
-            src={assetPath('assets/howitworks-scan.png')} 
-            alt={t.howItWorks.imageAlt}
-            className="steps-image absolute hidden lg:block"
-            style={{
-              height: 'calc(100% + 41px)',
-              width: 'auto',
-              left: '-80px',
-              top: '0',
-              zIndex: 1,
-              objectFit: 'cover',
-              objectPosition: 'left top',
-            }}
-          />
-          {/* Body Scan Image - Tablets & iPads */}
-          <img 
-            src={assetPath('assets/howitworks-scan.png')} 
-            alt={t.howItWorks.imageAlt}
-            className="steps-image absolute hidden md:block lg:hidden"
-            style={{
-              height: 'calc(100% + 41px)',
-              width: 'auto',
-              left: '-50px',
-              top: '0',
-              zIndex: 1,
-              objectFit: 'cover',
-              objectPosition: 'left top',
-            }}
-          />
-          {/* Body Scan Image - Mobile */}
-          <img 
-            src={assetPath('assets/howitworks-scan.png')} 
-            alt={t.howItWorks.imageAlt}
-            className="steps-image absolute md:hidden"
-            style={{
-              width: '70vw',
-              height: 'auto',
-              left: '-20px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              zIndex: 1,
-              objectFit: 'contain',
-            }}
-          />
+      {/* Body Scan Image - Only visible on screens >= 1095px */}
+      <img 
+        src={assetPath('assets/howitworks-scan.png')} 
+        alt={t.howItWorks.imageAlt}
+        className="steps-image absolute hidden min-[1095px]:block"
+        style={{
+          height: 'calc(100% + 41px)',
+          width: 'auto',
+          left: '-80px',
+          top: '0',
+          zIndex: 1,
+          objectFit: 'cover',
+          objectPosition: 'left top',
+        }}
+      />
+      {/* Image hidden on screens < 1095px */}
           
-          {/* Step Content - Right Side */}
-          <div 
-            className="steps-content absolute right-0 top-0 h-full flex flex-col justify-center px-4 sm:px-0"
-            style={{
-              width: '100%',
-              padding: 'clamp(15px, 4vh, 40px) clamp(10px, 3vw, 30px) clamp(15px, 4vh, 40px) clamp(10px, 3vw, 0px)',
-            }}
-          >
-            <div className="sm:ml-auto sm:w-[60%] md:w-[50%] lg:w-[420px]">
+      {/* Step Content */}
+      <div 
+        className="steps-content absolute right-0 top-0 h-full flex flex-col justify-center"
+        style={{
+          width: '100%',
+          padding: 'clamp(15px, 4vh, 40px) clamp(10px, 3vw, 30px) clamp(15px, 4vh, 40px) clamp(10px, 3vw, 0px)',
+        }}
+      >
+        <div className="w-full min-[1095px]:ml-auto min-[1095px]:w-[420px]" style={{ padding: '0 clamp(16px, 5vw, 64px)' }}>
               {/* Step Title - Fixed height container */}
               <div style={{ minHeight: 'clamp(80px, 12vh, 120px)' }}>
-                <h3 
-                  className="step-title font-['Inter',sans-serif] font-normal text-black whitespace-pre-line"
-                  style={{
-                    fontSize: 'clamp(18px, 2.5vw, 40px)',
-                    lineHeight: '1.21',
-                    marginBottom: 'clamp(6px, 2vh, 16px)',
-                  }}
-                  key={`title-${currentStep}`}
-                >
-                  {currentStepData.number} {currentStepData.title}
-                </h3>
+          <h3 
+            className="step-title font-['Inter',sans-serif] font-normal text-black whitespace-pre-line text-left"
+            style={{
+              fontSize: 'clamp(18px, 2.5vw, 40px)',
+              lineHeight: '1.21',
+              marginBottom: 'clamp(6px, 2vh, 16px)',
+            }}
+            key={`title-${currentStep}`}
+          >
+            {currentStepData.number} {currentStepData.title}
+          </h3>
               </div>
-              
+          
               {/* Step Description - Fixed height container */}
               <div style={{ minHeight: 'clamp(100px, 15vh, 150px)' }}>
-                <p 
-                  className="step-description font-['Inter',sans-serif] font-normal text-black"
-                  style={{
-                    fontSize: 'clamp(13px, 1.6vw, 24px)',
-                    lineHeight: '1.3',
-                    marginBottom: 'clamp(15px, 4vh, 40px)',
-                  }}
-                  key={`desc-${currentStep}`}
-                >
-                  {currentStepData.description}
-                </p>
+          <p 
+            className="step-description font-['Inter',sans-serif] font-normal text-black text-left"
+            style={{
+              fontSize: 'clamp(13px, 1.6vw, 24px)',
+              lineHeight: '1.3',
+              marginBottom: 'clamp(15px, 4vh, 40px)',
+            }}
+            key={`desc-${currentStep}`}
+          >
+            {currentStepData.description}
+          </p>
               </div>
-            
-              {/* Step Indicators */}
-              <div className="flex items-center gap-2">
-                {stepsData.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentStep(index)}
-                    className={`rounded-full transition-all duration-300 ${
-                      index === currentStep ? 'bg-black' : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
-                    style={{
-                      width: index === currentStep ? '24px' : '8px',
-                      height: '8px',
-                    }}
-                    aria-label={`Go to step ${index + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
+        
+          {/* Step Indicators */}
+          <div className="flex items-center justify-start gap-2">
+            {stepsData.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentStep(index)}
+                className={`rounded-full transition-all duration-300 ${
+                  index === currentStep ? 'bg-black' : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+                style={{
+                  width: index === currentStep ? '24px' : '8px',
+                  height: '8px',
+                }}
+                aria-label={`Go to step ${index + 1}`}
+              />
+            ))}
           </div>
+        </div>
+      </div>
       
       {/* Navigation Circles - Positioned on the card */}
       <div 
