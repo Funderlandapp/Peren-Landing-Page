@@ -218,7 +218,7 @@ const Header = () => {
   return (
     <>
       <header 
-        className="fixed top-0 left-0 right-0 z-[9999] px-2 sm:px-4 pointer-events-none"
+        className="fixed top-0 left-0 right-0 z-[9999] pointer-events-none"
         style={{ 
           position: 'fixed',
           top: 0,
@@ -228,10 +228,12 @@ const Header = () => {
           zIndex: 9999,
           paddingTop: isScrolled ? '6px' : '16px',
           paddingBottom: isScrolled ? '6px' : '16px',
+          paddingLeft: 'clamp(12px, 4vw, 64px)',
+          paddingRight: 'clamp(12px, 4vw, 64px)',
           transition: 'padding 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
         }}
       >
-        <Container className="max-w-[1400px] px-0 sm:px-6">
+        <Container className="max-w-[1400px]" style={{ paddingLeft: 0, paddingRight: 0 }}>
           {/* Navbar Container */}
           <nav ref={menuRef} className="relative mx-auto pointer-events-auto">
             {/* Liquid Glass Effect Container */}
@@ -241,10 +243,10 @@ const Header = () => {
                 isMenuOpen ? "rounded-[24px] sm:rounded-[32px]" : ""
               )}
               style={{ 
-                // Liquid glass background
+                // Liquid glass background - darker
                 background: isScrolled 
-                  ? 'linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(20, 20, 30, 0.9) 50%, rgba(0, 0, 0, 0.85) 100%)'
-                  : 'linear-gradient(135deg, rgba(0, 0, 0, 0.92) 0%, rgba(10, 10, 20, 0.95) 100%)',
+                  ? 'linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 30, 0.98) 50%, rgba(0, 0, 0, 0.95) 100%)'
+                  : 'linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(10, 10, 20, 0.99) 100%)',
                 backdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'blur(12px) saturate(150%)',
                 WebkitBackdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'blur(12px) saturate(150%)',
                 // Liquid morphing border radius - smaller on mobile
@@ -333,14 +335,74 @@ const Header = () => {
             {/* Mobile Menu Dropdown */}
             <div
               className={clsx(
-                "absolute top-[calc(100%+6px)] sm:top-[calc(100%+8px)] left-0 right-0 overflow-hidden transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1)",
+                "absolute top-[calc(100%+6px)] sm:top-[calc(100%+8px)] left-0 right-0 overflow-hidden rounded-[24px] sm:rounded-[32px]",
                 isMenuOpen ? "max-h-[600px] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-4 pointer-events-none"
               )}
+              style={{
+                transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
             >
               <div 
-                className="bg-black rounded-[24px] sm:rounded-[32px] p-4 sm:p-6 md:p-8 border border-white/10"
-                style={{ backgroundColor: '#000000' }}
+                className="rounded-[24px] sm:rounded-[32px] p-4 sm:p-6 md:p-8 relative overflow-hidden"
+                style={{ 
+                  // Liquid glass background - matches navbar color, darker
+                  background: isScrolled 
+                    ? 'linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 30, 0.98) 50%, rgba(0, 0, 0, 0.95) 100%)'
+                    : 'linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(10, 10, 20, 0.99) 100%)',
+                  backdropFilter: isMenuOpen 
+                    ? (isScrolled ? 'blur(20px) saturate(180%)' : 'blur(12px) saturate(150%)')
+                    : 'blur(0px) saturate(100%)',
+                  WebkitBackdropFilter: isMenuOpen 
+                    ? (isScrolled ? 'blur(20px) saturate(180%)' : 'blur(12px) saturate(150%)')
+                    : 'blur(0px) saturate(100%)',
+                  // Glass border effect
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  boxShadow: isMenuOpen 
+                    ? (isScrolled 
+                      ? '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.2)'
+                      : '0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08)')
+                    : '0 0px 0px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(255, 255, 255, 0), inset 0 -1px 0 rgba(0, 0, 0, 0)',
+                  transform: isMenuOpen ? 'scale(1)' : 'scale(0.95)',
+                  transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), -webkit-backdrop-filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                }}
               >
+                {/* Liquid Glass Shine Effect */}
+                <div 
+                  className="absolute inset-0 pointer-events-none overflow-hidden"
+                  style={{ borderRadius: 'inherit' }}
+                >
+                  {/* Top highlight reflection */}
+                  <div 
+                    className="absolute top-0 left-0 right-0 h-[1px]"
+                    style={{
+                      background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.2) 80%, transparent 100%)',
+                    }}
+                  />
+                  {/* Liquid moving shine */}
+                  <div 
+                    className="absolute inset-0"
+                    style={{
+                      background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,255,255,0.05) 0%, transparent 50%)',
+                    }}
+                  />
+                  {/* Bottom subtle glow */}
+                  <div 
+                    className="absolute bottom-0 left-0 right-0 h-[1px]"
+                    style={{
+                      background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%)',
+                    }}
+                  />
+                </div>
+                
+                {/* Content wrapper with relative positioning */}
+                <div 
+                  className="relative z-10"
+                  style={{
+                    opacity: isMenuOpen ? 1 : 0,
+                    transform: isMenuOpen ? 'translateY(0)' : 'translateY(-10px)',
+                    transition: 'opacity 0.4s ease 0.1s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
+                  }}
+                >
                 <div className="flex flex-col gap-4 sm:gap-6">
                   {navLinks.map((item, idx) => (
                     <a
@@ -349,7 +411,9 @@ const Header = () => {
                       onClick={(e) => handleNavClick(e, item.href)}
                       className="flex items-center justify-between group border-b border-white/10 pb-3 sm:pb-4 last:border-0"
                       style={{ 
-                        transitionDelay: `${idx * 50}ms`,
+                        opacity: isMenuOpen ? 1 : 0,
+                        transform: isMenuOpen ? 'translateX(0)' : 'translateX(-10px)',
+                        transition: `opacity 0.3s ease ${isMenuOpen ? `${idx * 50 + 100}ms` : '0ms'}, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) ${isMenuOpen ? `${idx * 50 + 100}ms` : '0ms'}`,
                         color: '#FFFFFF',
                         borderColor: 'rgba(255,255,255,0.1)'
                       }}
@@ -363,11 +427,20 @@ const Header = () => {
                     </a>
                   ))}
                   
-                  <div className="pt-3 sm:pt-4 mt-1 sm:mt-2 border-t border-white/10 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
+                  <div 
+                    className="pt-3 sm:pt-4 mt-1 sm:mt-2 border-t border-white/10 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0" 
+                    style={{ 
+                      borderColor: 'rgba(255,255,255,0.1)',
+                      opacity: isMenuOpen ? 1 : 0,
+                      transform: isMenuOpen ? 'translateX(0)' : 'translateX(-10px)',
+                      transition: `opacity 0.3s ease ${isMenuOpen ? `${navLinks.length * 50 + 150}ms` : '0ms'}, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) ${isMenuOpen ? `${navLinks.length * 50 + 150}ms` : '0ms'}`,
+                    }}
+                  >
                     <span className="text-[10px] sm:text-xs uppercase tracking-widest text-white/50">Language</span>
                     {/* Pass mobile prop to render the new mobile toggle layout */}
                     <LanguageToggle mobile />
                   </div>
+                </div>
                 </div>
               </div>
         </div>

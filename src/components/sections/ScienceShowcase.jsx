@@ -13,7 +13,6 @@ const ScienceCard = ({ title, image }) => (
       borderRadius: 'clamp(16px, 2vw, 22px)',
       gap: 'clamp(12px, 1.5vw, 16px)',
       padding: 'clamp(12px, 2vw, 16px)',
-      minWidth: '100%',
       width: '100%',
       height: 'clamp(250px, 35vw, 400px)',
       aspectRatio: '1 / 1'
@@ -75,6 +74,8 @@ const ScienceShowcase = () => {
   const [offset, setOffset] = useState(0)
   const [cardsPerView, setCardsPerView] = useState(1)
   const [isTransitioning, setIsTransitioning] = useState(true)
+  const [touchStart, setTouchStart] = useState(0)
+  const [touchEnd, setTouchEnd] = useState(0)
   
   const scienceCards = [
     { title: t.science.cards.biomarkers, image: assetPath('assets/science-biomarkers.png') },
@@ -122,6 +123,41 @@ const ScienceShowcase = () => {
   const goToNext = () => {
     setIsTransitioning(true)
     setOffset((prev) => prev + 1)
+  }
+
+  // Touch handlers for swipe functionality
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX)
+    setTouchEnd(0)
+  }
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) {
+      setTouchStart(0)
+      setTouchEnd(0)
+      return
+    }
+    
+    const distance = touchStart - touchEnd
+    const minSwipeDistance = 50 // minimum distance for swipe
+    
+    if (Math.abs(distance) > minSwipeDistance) {
+      if (distance > minSwipeDistance) {
+        // Swiped left - go to next
+        goToNext()
+      } else if (distance < -minSwipeDistance) {
+        // Swiped right - go to previous
+        goToPrevious()
+      }
+    }
+    
+    // Reset values
+    setTouchStart(0)
+    setTouchEnd(0)
   }
 
   // Reset position when reaching the edges (without animation)
@@ -242,6 +278,9 @@ const ScienceShowcase = () => {
               style={{
                 marginBottom: 'clamp(24px, 4vw, 32px)'
               }}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
               <div 
                 className="flex"
@@ -266,33 +305,33 @@ const ScienceShowcase = () => {
                   </div>
                 ))}
               </div>
+            </div>
               
-              {/* Pagination Dots - Shows current card in the cycle */}
-              <div 
-                className="flex justify-center"
-                style={{
-                  gap: 'clamp(6px, 1vw, 8px)',
-                  marginTop: 'clamp(12px, 2vw, 16px)'
-                }}
-              >
-                {scienceCards.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setIsTransitioning(true)
-                      setOffset(startOffset + index)
-                    }}
-                    className={`rounded-full transition-all duration-300 ${
-                      index === currentCardIndex ? 'bg-black' : 'bg-gray-300'
-                    }`}
-                    style={{
-                      width: index === currentCardIndex ? 'clamp(20px, 3vw, 24px)' : 'clamp(6px, 1vw, 8px)',
-                      height: 'clamp(6px, 1vw, 8px)'
-                    }}
-                    aria-label={`Go to card ${index + 1}`}
-                  />
-                ))}
-              </div>
+            {/* Pagination Dots - Shows current card in the cycle */}
+            <div 
+              className="flex justify-center"
+              style={{
+                gap: 'clamp(6px, 1vw, 8px)',
+                marginTop: 'clamp(12px, 2vw, 16px)'
+              }}
+            >
+              {scienceCards.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setIsTransitioning(true)
+                    setOffset(startOffset + index)
+                  }}
+                  className={`rounded-full transition-all duration-300 ${
+                    index === currentCardIndex ? 'bg-black' : 'bg-gray-300'
+                  }`}
+                  style={{
+                    width: index === currentCardIndex ? 'clamp(20px, 3vw, 24px)' : 'clamp(6px, 1vw, 8px)',
+                    height: 'clamp(6px, 1vw, 8px)'
+                  }}
+                  aria-label={`Go to card ${index + 1}`}
+                />
+              ))}
             </div>
 
             {/* Discover Section with Navigation */}

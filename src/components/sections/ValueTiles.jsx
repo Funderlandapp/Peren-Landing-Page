@@ -100,6 +100,104 @@ const ValueTiles = () => {
     return 'rounded-2xl' // Default soft corner
   }
 
+  // Reset when tab changes
+  const handleTabChange = (tab) => {
+    setActiveTab(tab)
+  }
+
+  // Render card content (reusable function)
+  const renderCardContent = (tile, isIndividuals) => (
+    <>
+      {/* Visual Container (Image or Icon) - Height scales with viewport width */}
+      <div 
+        className="relative flex w-full items-center justify-center overflow-hidden"
+        style={{
+          height: 'clamp(180px, 35vw, 320px)'
+        }}
+      >
+        {isIndividuals ? (
+          (tile.id === 'perform' || tile.id === 'age' || tile.id === 'balance' || tile.id === 'sync') ? (
+            <img
+              src={tile.image}
+              alt={tile.title}
+              className="w-auto object-contain border-0 outline-none"
+              style={{ 
+                border: 'none', 
+                outline: 'none',
+                height: 'clamp(180px, 35vw, 320px)'
+              }}
+              loading="lazy"
+            />
+          ) : (
+            <img
+              src={tile.image}
+              alt={tile.title}
+              className={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 ${getBorderRadius(getShape(tile.id))}`}
+              style={getClipPath(getShape(tile.id)) !== 'none' ? { clipPath: getClipPath(getShape(tile.id)) } : {}}
+              loading="lazy"
+            />
+          )
+        ) : (
+          <img
+            src={tile.image}
+            alt={tile.title}
+            className="w-auto object-contain border-0 outline-none"
+            style={{ 
+              border: 'none', 
+              outline: 'none',
+              height: 'clamp(180px, 35vw, 320px)'
+            }}
+            loading="lazy"
+          />
+        )}
+      </div>
+
+      {/* Text Content */}
+      <div 
+        className="flex items-start justify-between"
+        style={{
+          gap: 'clamp(8px, 2vw, 16px)',
+          marginTop: 'clamp(12px, 2vw, 16px)'
+        }}
+      >
+        <div 
+          className="flex-1"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 'clamp(4px, 1vw, 8px)'
+          }}
+        >
+          <h3 
+            className="whitespace-pre-line font-['Inter',sans-serif] font-bold uppercase leading-tight text-black"
+            style={{
+              fontSize: 'clamp(16px, 2.2vw, 24px)'
+            }}
+          >
+            {tile.title}
+          </h3>
+          <p 
+            className="max-w-sm font-['Inter',sans-serif] text-gray-800 leading-relaxed"
+            style={{
+              fontSize: 'clamp(13px, 1.6vw, 18px)'
+            }}
+          >
+            {tile.description}
+          </p>
+        </div>
+        <div 
+          className="flex items-center justify-center flex-shrink-0"
+          style={{
+            width: 'clamp(20px, 3vw, 24px)',
+            height: 'clamp(20px, 3vw, 24px)'
+          }}
+        >
+          <ArrowRight className="w-full h-full text-black" />
+        </div>
+      </div>
+    </>
+  )
+
   // Logic for Icons (Professionals)
   const getIconComponent = (iconType) => {
     switch (iconType) {
@@ -145,7 +243,7 @@ const ValueTiles = () => {
             
             <div className="relative flex">
               <button
-                onClick={() => setActiveTab('individuals')}
+                onClick={() => handleTabChange('individuals')}
                 className={`group relative flex flex-1 items-center justify-center font-medium transition-all duration-300 ${
                   activeTab === 'individuals' 
                     ? `text-black ${activeColor} z-20` 
@@ -162,7 +260,7 @@ const ValueTiles = () => {
               </button>
 
               <button
-                onClick={() => setActiveTab('professionals')}
+                onClick={() => handleTabChange('professionals')}
                 className={`group relative flex flex-1 items-center justify-center font-medium transition-all duration-300 ${
                   activeTab === 'professionals' 
                     ? `text-black ${activeColor} z-20` 
@@ -237,94 +335,7 @@ const ValueTiles = () => {
               
               return (
                 <article key={tile.id} className="flex flex-col group cursor-default">
-                  
-                  {/* Visual Container (Image or Icon) - Height scales with viewport width */}
-                  <div 
-                    className="relative flex w-full items-center justify-center overflow-hidden"
-                    style={{
-                      height: 'clamp(180px, 35vw, 320px)'
-                    }}
-                  >
-                    {isIndividuals ? (
-                      (tile.id === 'perform' || tile.id === 'age' || tile.id === 'balance' || tile.id === 'sync') ? (
-                        <img
-                          src={tile.image}
-                          alt={tile.title}
-                          className="w-auto object-contain border-0 outline-none"
-                          style={{ 
-                            border: 'none', 
-                            outline: 'none',
-                            height: 'clamp(180px, 35vw, 320px)'
-                          }}
-                          loading="lazy"
-                        />
-                      ) : (
-                        <img
-                          src={tile.image}
-                          alt={tile.title}
-                          className={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 ${getBorderRadius(getShape(tile.id))}`}
-                          style={getClipPath(getShape(tile.id)) !== 'none' ? { clipPath: getClipPath(getShape(tile.id)) } : {}}
-                          loading="lazy"
-                        />
-                      )
-                    ) : (
-                      <img
-                        src={tile.image}
-                        alt={tile.title}
-                        className="w-auto object-contain border-0 outline-none"
-                        style={{ 
-                          border: 'none', 
-                          outline: 'none',
-                          height: 'clamp(180px, 35vw, 320px)'
-                        }}
-                        loading="lazy"
-                      />
-                    )}
-                  </div>
-
-                  {/* Text Content */}
-                  <div 
-                    className="flex items-start justify-between"
-                    style={{
-                      gap: 'clamp(8px, 2vw, 16px)',
-                      marginTop: 'clamp(12px, 2vw, 16px)'
-                    }}
-                  >
-                    <div 
-                      className="flex-1"
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: 'clamp(4px, 1vw, 8px)'
-                      }}
-                    >
-                      <h3 
-                        className="whitespace-pre-line font-['Inter',sans-serif] font-bold uppercase leading-tight text-black"
-                        style={{
-                          fontSize: 'clamp(16px, 2.2vw, 24px)'
-                        }}
-                      >
-                        {tile.title}
-                      </h3>
-                      <p 
-                        className="max-w-sm font-['Inter',sans-serif] text-gray-800 leading-relaxed"
-                        style={{
-                          fontSize: 'clamp(13px, 1.6vw, 18px)'
-                        }}
-                      >
-                        {tile.description}
-                      </p>
-                    </div>
-                    <div 
-                      className="flex items-center justify-center flex-shrink-0"
-                      style={{
-                        width: 'clamp(20px, 3vw, 24px)',
-                        height: 'clamp(20px, 3vw, 24px)'
-                      }}
-                    >
-                      <ArrowRight className="w-full h-full text-black" />
-                    </div>
-                  </div>
+                  {renderCardContent(tile, isIndividuals)}
                 </article>
               )
             })}
