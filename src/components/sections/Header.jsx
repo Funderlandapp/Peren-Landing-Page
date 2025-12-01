@@ -243,12 +243,8 @@ const Header = () => {
                 isMenuOpen ? "rounded-[24px] sm:rounded-[32px]" : ""
               )}
               style={{ 
-                // Liquid glass background - darker
-                background: isScrolled 
-                  ? 'linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 30, 0.98) 50%, rgba(0, 0, 0, 0.95) 100%)'
-                  : 'linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(10, 10, 20, 0.99) 100%)',
-                backdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'blur(12px) saturate(150%)',
-                WebkitBackdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'blur(12px) saturate(150%)',
+                // Solid black background - no transparency
+                background: '#000000',
                 // Liquid morphing border radius - smaller on mobile
                 borderRadius: isScrolled ? '12px' : '40px',
                 // Glass border effect
@@ -260,7 +256,7 @@ const Header = () => {
                 marginLeft: isScrolled ? '-4px' : '0',
                 marginRight: isScrolled ? '-4px' : '0',
                 // Smooth liquid spring transition
-                transition: 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), backdrop-filter 0.5s ease, box-shadow 0.6s ease',
+                transition: 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.6s ease',
                 transform: isScrolled ? 'scale(1.01)' : 'scale(1)',
                 willChange: 'transform, border-radius, margin'
               }}
@@ -345,16 +341,8 @@ const Header = () => {
               <div 
                 className="rounded-[24px] sm:rounded-[32px] p-4 sm:p-6 md:p-8 relative overflow-hidden"
                 style={{ 
-                  // Liquid glass background - matches navbar color, darker
-                  background: isScrolled 
-                    ? 'linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 30, 0.98) 50%, rgba(0, 0, 0, 0.95) 100%)'
-                    : 'linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(10, 10, 20, 0.99) 100%)',
-                  backdropFilter: isMenuOpen 
-                    ? (isScrolled ? 'blur(20px) saturate(180%)' : 'blur(12px) saturate(150%)')
-                    : 'blur(0px) saturate(100%)',
-                  WebkitBackdropFilter: isMenuOpen 
-                    ? (isScrolled ? 'blur(20px) saturate(180%)' : 'blur(12px) saturate(150%)')
-                    : 'blur(0px) saturate(100%)',
+                  // Solid black background - no transparency
+                  background: '#000000',
                   // Glass border effect
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   boxShadow: isMenuOpen 
@@ -363,7 +351,7 @@ const Header = () => {
                       : '0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08)')
                     : '0 0px 0px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(255, 255, 255, 0), inset 0 -1px 0 rgba(0, 0, 0, 0)',
                   transform: isMenuOpen ? 'scale(1)' : 'scale(0.95)',
-                  transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), -webkit-backdrop-filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
                 }}
               >
                 {/* Liquid Glass Shine Effect */}

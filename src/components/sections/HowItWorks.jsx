@@ -146,6 +146,7 @@ const HowItWorksSteps = () => {
   const [currentStep, setCurrentStep] = useState(0)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
+  const [isDesktop, setIsDesktop] = useState(false)
   const { language } = useLanguage()
   const t = translations[language]
   
@@ -171,6 +172,18 @@ const HowItWorksSteps = () => {
       description: t.howItWorks.steps.levelUp.description,
     },
   ]
+
+  // Check if desktop (image visible)
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1095)
+    }
+    
+    checkDesktop()
+    window.addEventListener('resize', checkDesktop)
+    
+    return () => window.removeEventListener('resize', checkDesktop)
+  }, [])
 
   // Listen for navigation event from header
   useEffect(() => {
@@ -235,7 +248,8 @@ const HowItWorksSteps = () => {
       className="steps-container relative border border-black overflow-visible"
       style={{
         width: '100%',
-        height: 'clamp(380px, 58vh, 680px)',
+        height: isDesktop ? 'clamp(380px, 58vh, 680px)' : 'auto',
+        minHeight: isDesktop ? 'clamp(380px, 58vh, 680px)' : 'clamp(300px, 40vh, 400px)',
         borderRadius: 'clamp(20px, 5vw, 33px)',
         margin: '0 auto',
         backgroundColor: 'transparent',

@@ -112,7 +112,9 @@ const ValueTiles = () => {
       <div 
         className="relative flex w-full items-center justify-center overflow-hidden"
         style={{
-          height: 'clamp(180px, 35vw, 320px)'
+          height: 'clamp(180px, 35vw, 320px)',
+          paddingLeft: 'clamp(16px, 5vw, 64px)',
+          paddingRight: 'clamp(16px, 5vw, 64px)'
         }}
       >
         {isIndividuals ? (
@@ -157,7 +159,9 @@ const ValueTiles = () => {
         className="flex items-start justify-between"
         style={{
           gap: 'clamp(8px, 2vw, 16px)',
-          marginTop: 'clamp(12px, 2vw, 16px)'
+          marginTop: 'clamp(12px, 2vw, 16px)',
+          paddingLeft: 'clamp(16px, 5vw, 64px)',
+          paddingRight: 'clamp(16px, 5vw, 64px)'
         }}
       >
         <div 
