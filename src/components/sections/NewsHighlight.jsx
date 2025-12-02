@@ -6,7 +6,7 @@ import { assetPath } from '../../utils/assetPath'
 const ArrowButton = ({ direction, onClick }) => (
   <button
     onClick={onClick}
-    className="flex items-center justify-center rounded-full border border-black bg-white transition-colors hover:bg-gray-50"
+    className="flex items-center justify-center rounded-full border border-black bg-transparent transition-colors hover:bg-white/20"
     style={{
       width: 'clamp(36px, 4vw, 42px)',
       height: 'clamp(36px, 4vw, 42px)'
@@ -43,7 +43,8 @@ const NewsHighlight = () => {
       id="blog"
       style={{
         paddingTop: 'clamp(32px, 5vw, 56px)',
-        paddingBottom: 'clamp(32px, 5vw, 56px)'
+        paddingBottom: 'clamp(32px, 5vw, 56px)',
+        scrollMarginTop: 'clamp(80px, 10vh, 120px)'
       }}
     >
       <Container>

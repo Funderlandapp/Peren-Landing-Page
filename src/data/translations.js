@@ -2,8 +2,9 @@ export const translations = {
   en: {
     nav: {
       whyPeren: 'Why Peren',
-      simulations: 'Simulations',
-      joinPeren: 'Join Peren',
+      whatWeTest: 'What we test',
+      howItWorks: 'How it works',
+      blog: 'Life at Peren Blog',
       contactUs: 'Contact us',
       menu: 'Menu',
     },
@@ -126,8 +127,9 @@ We look forward to meeting partners, investors, and experts who share this visio
   fr: {
     nav: {
       whyPeren: 'Pourquoi Peren',
-      simulations: 'Simulations',
-      joinPeren: 'Rejoindre Peren',
+      whatWeTest: 'Ce que nous testons',
+      howItWorks: 'Comment ça marche',
+      blog: 'Blog Life at Peren',
       contactUs: 'Nous contacter',
       menu: 'Menu',
     },

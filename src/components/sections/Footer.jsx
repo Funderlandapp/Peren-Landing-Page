@@ -168,7 +168,8 @@ const Footer = () => {
       className="bg-white text-gray-900"
       style={{
         paddingTop: 'clamp(32px, 5vw, 56px)',
-        paddingBottom: 'clamp(32px, 5vw, 56px)'
+        paddingBottom: 'clamp(32px, 5vw, 56px)',
+        scrollMarginTop: 'clamp(80px, 10vh, 120px)'
       }}
     >
       <Container 

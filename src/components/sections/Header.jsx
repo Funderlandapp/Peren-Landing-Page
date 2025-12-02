@@ -151,31 +151,19 @@ const Header = () => {
 
   const navLinks = [
     { label: t.nav.whyPeren, href: '#why' },
-    { label: t.nav.simulations, href: '#join?step=3' },
-    { label: t.nav.joinPeren, href: '#join' },
+    { label: t.nav.whatWeTest, href: '#science' },
+    { label: t.nav.howItWorks, href: '#join' },
+    { label: t.nav.blog, href: '#blog' },
     { label: t.nav.contactUs, href: '#contact' },
   ]
 
   const handleNavClick = (e, href) => {
     e.stopPropagation() // Prevent click-outside from triggering
     
-    if (href.includes('?step=3')) {
-      e.preventDefault()
+    // Close menu after a small delay to allow navigation
+    setTimeout(() => {
       setIsMenuOpen(false)
-      const section = document.getElementById('join')
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' })
-        // Trigger step change after scroll
-        setTimeout(() => {
-          window.dispatchEvent(new CustomEvent('navigateToStep', { detail: { step: 2 } }))
-        }, 500)
-      }
-    } else {
-      // Close menu after a small delay to allow navigation
-      setTimeout(() => {
-        setIsMenuOpen(false)
-      }, 100)
-    }
+    }, 100)
   }
 
   // Handle scroll effect - trigger sticky mode after scrolling past threshold
@@ -307,7 +295,7 @@ const Header = () => {
                   </a>
                 ))}
                 
-                <div className="h-6 w-px bg-white/10 mx-2" /> {/* Refined Separator */}
+                <div className="h-6 w-px bg-white/80 mx-2" /> {/* Refined Separator */}
                 
                 <LanguageToggle />
               </div>

@@ -117,6 +117,8 @@ const ValueTiles = () => {
           paddingRight: 'clamp(16px, 5vw, 64px)'
         }}
       >
+        {/* Image content area - constrained width to match text container */}
+        <div className="mx-auto flex items-center justify-center" style={{ width: 'clamp(220px, 60%, 100%)', maxWidth: '100%' }}>
         {isIndividuals ? (
           (tile.id === 'perform' || tile.id === 'age' || tile.id === 'balance' || tile.id === 'sync') ? (
             <img
@@ -152,18 +154,26 @@ const ValueTiles = () => {
             loading="lazy"
           />
         )}
+        </div>
       </div>
 
-      {/* Text Content */}
-      <div 
-        className="flex items-start justify-between"
+      {/* Text Content - Constrained to match image content width */}
+      <div
+        className="flex justify-center items-center"
         style={{
-          gap: 'clamp(8px, 2vw, 16px)',
           marginTop: 'clamp(12px, 2vw, 16px)',
           paddingLeft: 'clamp(16px, 5vw, 64px)',
           paddingRight: 'clamp(16px, 5vw, 64px)'
         }}
       >
+        <div 
+          className="flex items-start justify-between mx-auto"
+          style={{
+            gap: 'clamp(8px, 2vw, 16px)',
+            width: 'clamp(220px, 60%, 100%)',
+            maxWidth: '100%'
+          }}
+        >
         <div 
           className="flex-1"
           style={{
@@ -198,6 +208,7 @@ const ValueTiles = () => {
         >
           <ArrowRight className="w-full h-full text-black" />
         </div>
+        </div>
       </div>
     </>
   )
@@ -223,11 +234,12 @@ const ValueTiles = () => {
 
   return (
     <section 
-      id="why" 
+      id="why"
       className="bg-white"
       style={{
         paddingTop: 'clamp(32px, 5vw, 56px)',
-        paddingBottom: 'clamp(32px, 5vw, 56px)'
+        paddingBottom: 'clamp(32px, 5vw, 56px)',
+        scrollMarginTop: 'clamp(60px, 7vh, 90px)'
       }}
     >
       <Container>
@@ -260,7 +272,7 @@ const ValueTiles = () => {
                   borderBottomRightRadius: activeTab === 'individuals' ? '0' : 'clamp(40px, 6vw, 60px)'
                 }}
               >
-                {language === 'en' ? 'Personal' : 'Personnel'}
+                {language === 'en' ? 'Individuals' : 'Personnel'}
               </button>
 
               <button
