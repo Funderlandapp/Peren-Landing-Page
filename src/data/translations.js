@@ -116,12 +116,166 @@ We look forward to meeting partners, investors, and experts who share this visio
         blog: 'Blog',
       },
       legal: {
-        company: 'Company',
-        research: 'Research',
-        terms: 'Terms',
-        privacy: 'Privacy',
+        about: 'About',
+        privacy: 'Privacy Policy',
+        terms: 'Terms of Service',
       },
       copyright: '© PEREN® 2025. All rights reserved.',
+    },
+    about: {
+      title: 'About Peren AI',
+      p1: 'Every body writes thousands of invisible lines every day: sleep, heartbeat, stress, metabolism.',
+      p2: 'Each moment tells a story.\nBut we miss reading most.',
+      p3: 'And when disease appears, it’s often too late.',
+      p4: 'At PEREN AI, we decided to listen.',
+      p5: 'We’re building a <strong>digital twin</strong> of your body — a living, evolving model that learns from you.',
+      p6: 'Every day, this twin learns how you live, how you age, how you adapt.',
+      p7: 'It reads your metabolism, understands your habits, and predicts how your health will evolve.\nOur AI transforms this data into actionable insights.',
+      quote: 'We’re not just monitoring your health .. we’re reversing risks and extending life.',
+      p8: 'Healthcare today reacts. It’s time to flip the model.',
+      p9: 'PEREN.AI shifts healthcare from reactive to proactive.',
+      p10: 'From reactive medicine to proactive, preventive health.\nFrom managing diseases… to extending healthy life.',
+      p11: 'We empower individuals to understand and improve their unique biology.',
+      p12: 'We help health professionals design smarter virtual testing, prevention and reduce long-term risks and costs.',
+      p13: 'For individuals — we help you understand and act on your unique biology.',
+      p14: 'For health professionals and organizations — we turn data into intelligence, improving prevention programs, designing better care, and reducing long-term costs.',
+      p15: 'Every personal story fuels collective progress.',
+      offerTitle: 'What We Offer',
+      offer1: {
+        title: 'Health Simulations',
+        desc: 'Test “what-if” scenarios on your digital twin — treatment response, lifestyle changes, aging patterns — before they happen in real life.',
+      },
+      offer2: {
+        title: 'Prevention Scenarios',
+        desc: 'Detect risks early, understand your biological aging, and receive personalized recommendations that help you stay ahead of disease.',
+      },
+      offer3: {
+        title: 'Serious Games for Health professionals',
+        desc: 'Engaging, science-based experiences that translate your data into intuitive actions — making prevention simple, interactive, and motivating.',
+      },
+      closing1: 'This is health that learns.',
+      closing2: 'Health that predicts.',
+      closing3: 'Health that evolves with you.',
+      final: 'At PEREN.AI, we believe the future of health is now.',
+    },
+    privacy: {
+      title: 'Privacy Policy',
+      intro1: 'This Privacy Policy explains how Peren.ai ("we", "our", or "Peren.ai") collects, uses, and protects your personal data when you use our website and services ("Service").',
+      intro2: 'By using the Service, you agree to the collection and use of information in accordance with this Privacy Policy.',
+      sections: [
+        {
+          title: '1. Information We Collect',
+          content: 'We collect the following types of personal information:',
+          list: [
+            '<strong>Personal Identification Information:</strong> Name, email address, phone number, etc.',
+            '<strong>Account Information:</strong> Username, password, and other registration details.',
+            '<strong>Usage Data:</strong> Information on how you interact with our website, including IP address, browser type, device information, and pages visited.',
+            '<strong>Payment Information:</strong> For processing payments, we may collect payment card details (via third-party payment processors).',
+          ]
+        },
+        {
+          title: '2. How We Use Your Information',
+          content: 'We use your personal information for the following purposes:',
+          list: [
+            'To provide and maintain our services.',
+            'To process payments and subscriptions.',
+            'To improve and personalize your experience with the Service.',
+            'To communicate with you regarding updates, support, and promotions.',
+            'To comply with legal obligations.',
+          ]
+        },
+        {
+          title: '3. Sharing Your Information',
+          content: 'We may share your information with third-party service providers for the purpose of delivering the Service, including:',
+          list: [
+            'Payment processors (for handling payments).',
+            'Hosting providers (for maintaining the website).',
+            'Analytics services (for understanding usage patterns).',
+          ],
+          extra: 'We will not sell your personal data to third parties.'
+        },
+        {
+          title: '4. Data Security',
+          content: 'We take the security of your data seriously. We implement reasonable measures to protect your personal information from unauthorized access, alteration, or destruction. However, please note that no method of transmission over the internet is completely secure, and we cannot guarantee absolute security.'
+        },
+        {
+          title: '5. Your Data Rights',
+          content: 'You have the right to:',
+          list: [
+            'Access your personal data and request a copy.',
+            'Rectify any incorrect or incomplete information.',
+            'Delete your personal data (subject to legal obligations).',
+            'Object to processing based on legitimate interests or direct marketing.',
+            'Withdraw consent where processing is based on consent.',
+          ],
+          extra: 'To exercise these rights, please contact us at <a href="mailto:life@peren.ai" class="underline hover:text-gray-600">life@peren.ai</a>'
+        },
+        {
+          title: '6. Cookies',
+          content: 'Our website may use cookies to enhance your experience. Cookies are small data files stored on your device that allow us to recognize you and improve site functionality. You can configure your browser to refuse cookies, but this may affect your ability to use certain features of the Service.'
+        },
+        {
+          title: '7. International Transfers',
+          content: 'Your data may be transferred to and stored in countries outside of Morocco. However, we only transfer data to countries that are subject to the GDPR or that provide a level of data protection equivalent to Moroccan law, as defined by the Commission Nationale de Contrôle de la Protection des Données à Caractère Personnel (CNDP). By using our Service, you consent to these transfers in compliance with applicable data protection regulations.'
+        },
+        {
+          title: '8. Changes to this Privacy Policy',
+          content: 'We reserve the right to update or change this Privacy Policy at any time. We will notify you of any significant changes, and your continued use of the Service after such changes will constitute your acceptance of the updated Privacy Policy.'
+        },
+        {
+          title: '9. Contact Information',
+          content: 'For questions or concerns about your privacy, or to exercise your data rights, please contact us at:<br />Email: <a href="mailto:life@peren.ai" class="underline hover:text-gray-600">life@peren.ai</a>'
+        }
+      ]
+    },
+    terms: {
+      title: 'Terms of service',
+      intro1: 'These Terms of Service ("Terms") govern your use of Peren.ai’s website and services ("Service"), operated by Peren.ai, and are a binding agreement between you ("User" or "you") and Peren.ai ("we", "our", or "Funderland.ai").',
+      intro2: 'By accessing or using the Service, you agree to comply with these Terms. If you do not agree to these Terms, you must not use the Service.',
+      sections: [
+        {
+          title: '1. Account Registration',
+          content: 'To access certain features of the Service, you may need to create an account. You agree to provide accurate, current, and complete information when registering, and to update such information if it changes.'
+        },
+        {
+          title: '2. Use of the Service',
+          content: 'You agree to use the Service for lawful purposes and in accordance with these Terms. You will not engage in any activity that could damage, disable, overburden, or impair the Service or interfere with any other party’s use of the Service.'
+        },
+        {
+          title: '3. Payments and Subscriptions',
+          content: 'If you subscribe to a paid plan or service, you agree to pay the applicable fees. Fees will be billed in accordance with the pricing plan selected during registration, and payments are due in advance unless otherwise specified.'
+        },
+        {
+          title: '4. Prohibited Conduct',
+          content: 'You agree not to:',
+          list: [
+            'Violate any applicable law or regulation.',
+            'Engage in any conduct that could harm the reputation of Peren.ai or its services.',
+            'Use the Service to transmit harmful or malicious content, including viruses or malware.',
+            'Attempt to access any part of the Service to which you do not have permission.',
+          ]
+        },
+        {
+          title: '5. Termination',
+          content: 'Peren.ai reserves the right to suspend or terminate your account if you violate these Terms or engage in conduct that we deem harmful to our service or community. You can terminate your account at any time by contacting us.'
+        },
+        {
+          title: '6. Limitation of Liability',
+          content: 'To the maximum extent permitted by law, Peren.ai shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your use of the Service. We do not guarantee that the Service will be error-free or uninterrupted.'
+        },
+        {
+          title: '7. Changes to the Terms',
+          content: 'Peren.ai reserves the right to modify these Terms at any time. We will notify you of any significant changes, and your continued use of the Service after such changes will constitute your acceptance of the updated Terms.'
+        },
+        {
+          title: '8. Governing Law',
+          content: 'These Terms are governed by the laws of Morocco. Any disputes shall be resolved in the courts of Casablanca.'
+        },
+        {
+          title: '9. Contact Information',
+          content: 'For any questions about these Terms of Service, please contact us at:<br />Email: <a href="mailto:life@peren.ai" class="underline hover:text-gray-600">life@peren.ai</a>'
+        }
+      ]
     },
   },
   fr: {
@@ -241,13 +395,166 @@ Nous avons hâte de rencontrer des partenaires, des investisseurs et des experts
         blog: 'Blog',
       },
       legal: {
-        company: 'Entreprise',
-        research: 'Recherche',
-        terms: 'Conditions',
-        privacy: 'Confidentialité',
+        about: 'À propos',
+        privacy: 'Politique de confidentialité',
+        terms: "Conditions d'utilisation",
       },
       copyright: '© PEREN® 2025. Tous droits réservés.',
     },
+    about: {
+      title: 'À propos de Peren AI',
+      p1: 'Chaque corps écrit des milliers de lignes invisibles chaque jour : sommeil, rythme cardiaque, stress, métabolisme.',
+      p2: 'Chaque instant raconte une histoire.\nMais nous en manquons la plupart.',
+      p3: 'Et quand la maladie apparaît, il est souvent trop tard.',
+      p4: 'Chez PEREN AI, nous avons décidé d\'écouter.',
+      p5: 'Nous construisons un <strong>jumeau numérique</strong> de votre corps — un modèle vivant et évolutif qui apprend de vous.',
+      p6: 'Chaque jour, ce jumeau apprend comment vous vivez, comment vous vieillissez, comment vous vous adaptez.',
+      p7: 'Il lit votre métabolisme, comprend vos habitudes et prédit l\'évolution de votre santé.\nNotre IA transforme ces données en informations exploitables.',
+      quote: 'Nous ne surveillons pas seulement votre santé... nous inversons les risques et prolongeons la vie.',
+      p8: 'La santé d\'aujourd\'hui réagit. Il est temps de changer de modèle.',
+      p9: 'PEREN.AI fait passer la santé du réactif au proactif.',
+      p10: 'De la médecine réactive à la santé préventive et proactive.\nDe la gestion des maladies... à l\'extension de la vie en bonne santé.',
+      p11: 'Nous donnons aux individus les moyens de comprendre et d\'améliorer leur biologie unique.',
+      p12: 'Nous aidons les professionnels de santé à concevoir des tests virtuels plus intelligents, à améliorer la prévention et à réduire les risques et les coûts à long terme.',
+      p13: 'Pour les particuliers — nous vous aidons à comprendre et à agir sur votre biologie unique.',
+      p14: 'Pour les professionnels de santé et les organisations — nous transformons les données en intelligence, améliorant les programmes de prévention, concevant de meilleurs soins et réduisant les coûts à long terme.',
+      p15: 'Chaque histoire personnelle alimente le progrès collectif.',
+      offerTitle: 'Ce que nous offrons',
+      offer1: {
+        title: 'Simulations de santé',
+        desc: 'Testez des scénarios « what-if » sur votre jumeau numérique — réponse au traitement, changements de mode de vie, modèles de vieillissement — avant qu\'ils ne se produisent dans la vie réelle.',
+      },
+      offer2: {
+        title: 'Scénarios de prévention',
+        desc: 'Détectez les risques tôt, comprenez votre vieillissement biologique et recevez des recommandations personnalisées pour garder une longueur d\'avance sur la maladie.',
+      },
+      offer3: {
+        title: 'Jeux sérieux pour les professionnels de santé',
+        desc: 'Des expériences engageantes et fondées sur la science qui traduisent vos données en actions intuitives — rendant la prévention simple, interactive et motivante.',
+      },
+      closing1: 'C\'est une santé qui apprend.',
+      closing2: 'Une santé qui prédit.',
+      closing3: 'Une santé qui évolue avec vous.',
+      final: 'Chez PEREN.AI, nous croyons que l\'avenir de la santé est maintenant.',
+    },
+    privacy: {
+      title: 'Politique de confidentialité',
+      intro1: 'Cette politique de confidentialité explique comment Peren.ai (« nous », « notre » ou « Peren.ai ») collecte, utilise et protège vos données personnelles lorsque vous utilisez notre site web et nos services (« Service »).',
+      intro2: 'En utilisant le Service, vous acceptez la collecte et l\'utilisation des informations conformément à cette politique de confidentialité.',
+      sections: [
+        {
+          title: '1. Informations que nous collectons',
+          content: 'Nous collectons les types d\'informations personnelles suivants :',
+          list: [
+            '<strong>Informations d\'identification personnelle :</strong> Nom, adresse e-mail, numéro de téléphone, etc.',
+            '<strong>Informations de compte :</strong> Nom d\'utilisateur, mot de passe et autres détails d\'inscription.',
+            '<strong>Données d\'utilisation :</strong> Informations sur la façon dont vous interagissez avec notre site web, y compris l\'adresse IP, le type de navigateur, les informations sur l\'appareil et les pages visitées.',
+            '<strong>Informations de paiement :</strong> Pour le traitement des paiements, nous pouvons collecter les détails de la carte de paiement (via des processeurs de paiement tiers).',
+          ]
+        },
+        {
+          title: '2. Comment nous utilisons vos informations',
+          content: 'Nous utilisons vos informations personnelles aux fins suivantes :',
+          list: [
+            'Pour fournir et maintenir nos services.',
+            'Pour traiter les paiements et les abonnements.',
+            'Pour améliorer et personnaliser votre expérience avec le Service.',
+            'Pour communiquer avec vous concernant les mises à jour, le support et les promotions.',
+            'Pour se conformer aux obligations légales.',
+          ]
+        },
+        {
+          title: '3. Partage de vos informations',
+          content: 'Nous pouvons partager vos informations avec des prestataires de services tiers dans le but de fournir le Service, notamment :',
+          list: [
+            'Processeurs de paiement (pour gérer les paiements).',
+            'Hébergeurs (pour maintenir le site web).',
+            'Services d\'analyse (pour comprendre les modèles d\'utilisation).',
+          ],
+          extra: 'Nous ne vendrons pas vos données personnelles à des tiers.'
+        },
+        {
+          title: '4. Sécurité des données',
+          content: 'Nous prenons la sécurité de vos données au sérieux. Nous mettons en œuvre des mesures raisonnables pour protéger vos informations personnelles contre l\'accès, l\'altération ou la destruction non autorisés. Cependant, veuillez noter qu\'aucune méthode de transmission sur Internet n\'est totalement sécurisée et nous ne pouvons garantir une sécurité absolue.'
+        },
+        {
+          title: '5. Vos droits sur les données',
+          content: 'Vous avez le droit de :',
+          list: [
+            'Accéder à vos données personnelles et en demander une copie.',
+            'Rectifier toute information incorrecte ou incomplète.',
+            'Supprimer vos données personnelles (sous réserve des obligations légales).',
+            'Vous opposer au traitement fondé sur des intérêts légitimes ou le marketing direct.',
+            'Retirer votre consentement lorsque le traitement est fondé sur le consentement.',
+          ],
+          extra: 'Pour exercer ces droits, veuillez nous contacter à <a href="mailto:life@peren.ai" class="underline hover:text-gray-600">life@peren.ai</a>'
+        },
+        {
+          title: '6. Cookies',
+          content: 'Notre site web peut utiliser des cookies pour améliorer votre expérience. Les cookies sont de petits fichiers de données stockés sur votre appareil qui nous permettent de vous reconnaître et d\'améliorer les fonctionnalités du site. Vous pouvez configurer votre navigateur pour refuser les cookies, mais cela peut affecter votre capacité à utiliser certaines fonctionnalités du Service.'
+        },
+        {
+          title: '7. Transferts internationaux',
+          content: 'Vos données peuvent être transférées et stockées dans des pays en dehors du Maroc. Cependant, nous ne transférons les données que vers des pays soumis au RGPD ou offrant un niveau de protection des données équivalent à la loi marocaine, tel que défini par la Commission Nationale de Contrôle de la Protection des Données à Caractère Personnel (CNDP). En utilisant notre Service, vous consentez à ces transferts conformément aux réglementations applicables en matière de protection des données.'
+        },
+        {
+          title: '8. Modifications de cette politique de confidentialité',
+          content: 'Nous nous réservons le droit de mettre à jour ou de modifier cette politique de confidentialité à tout moment. Nous vous informerons de tout changement important, et votre utilisation continue du Service après de tels changements constituera votre acceptation de la politique de confidentialité mise à jour.'
+        },
+        {
+          title: '9. Coordonnées',
+          content: 'Pour toute question ou préoccupation concernant votre confidentialité, ou pour exercer vos droits sur les données, veuillez nous contacter à :<br />E-mail : <a href="mailto:life@peren.ai" class="underline hover:text-gray-600">life@peren.ai</a>'
+        }
+      ]
+    },
+    terms: {
+      title: 'Conditions d\'utilisation',
+      intro1: 'Ces conditions d\'utilisation (« Conditions ») régissent votre utilisation du site web et des services de Peren.ai (« Service »), exploités par Peren.ai, et constituent un accord contraignant entre vous (« Utilisateur » ou « vous ») et Peren.ai (« nous », « notre » ou « Funderland.ai »).',
+      intro2: 'En accédant ou en utilisant le Service, vous acceptez de vous conformer à ces Conditions. Si vous n\'acceptez pas ces Conditions, vous ne devez pas utiliser le Service.',
+      sections: [
+        {
+          title: '1. Inscription au compte',
+          content: 'Pour accéder à certaines fonctionnalités du Service, vous devrez peut-être créer un compte. Vous acceptez de fournir des informations exactes, actuelles et complètes lors de l\'inscription, et de mettre à jour ces informations si elles changent.'
+        },
+        {
+          title: '2. Utilisation du Service',
+          content: 'Vous acceptez d\'utiliser le Service à des fins légales et conformément à ces Conditions. Vous ne vous livrerez à aucune activité qui pourrait endommager, désactiver, surcharger ou nuire au Service ou interférer avec l\'utilisation du Service par toute autre partie.'
+        },
+        {
+          title: '3. Paiements et abonnements',
+          content: 'Si vous vous abonnez à un plan ou service payant, vous acceptez de payer les frais applicables. Les frais seront facturés conformément au plan tarifaire sélectionné lors de l\'inscription, et les paiements sont dus à l\'avance, sauf indication contraire.'
+        },
+        {
+          title: '4. Conduite interdite',
+          content: 'Vous acceptez de ne pas :',
+          list: [
+            'Violer toute loi ou réglementation applicable.',
+            'Vous livrer à une conduite qui pourrait nuire à la réputation de Peren.ai ou de ses services.',
+            'Utiliser le Service pour transmettre du contenu nuisible ou malveillant, y compris des virus ou des logiciels malveillants.',
+            'Tenter d\'accéder à toute partie du Service pour laquelle vous n\'avez pas la permission.',
+          ]
+        },
+        {
+          title: '5. Résiliation',
+          content: 'Peren.ai se réserve le droit de suspendre ou de résilier votre compte si vous violez ces Conditions ou si vous vous livrez à une conduite que nous jugeons nuisible à notre service ou à notre communauté. Vous pouvez résilier votre compte à tout moment en nous contactant.'
+        },
+        {
+          title: '6. Limitation de responsabilité',
+          content: 'Dans toute la mesure permise par la loi, Peren.ai ne sera pas responsable des dommages indirects, accessoires, spéciaux, consécutifs ou punitifs découlant de votre utilisation du Service. Nous ne garantissons pas que le Service sera exempt d\'erreurs ou ininterrompu.'
+        },
+        {
+          title: '7. Modifications des Conditions',
+          content: 'Peren.ai se réserve le droit de modifier ces Conditions à tout moment. Nous vous informerons de tout changement important, et votre utilisation continue du Service après de tels changements constituera votre acceptation des Conditions mises à jour.'
+        },
+        {
+          title: '8. Loi applicable',
+          content: 'Ces Conditions sont régies par les lois du Maroc. Tout litige sera résolu devant les tribunaux de Casablanca.'
+        },
+        {
+          title: '9. Coordonnées',
+          content: 'Pour toute question concernant ces Conditions d\'utilisation, veuillez nous contacter à :<br />E-mail : <a href="mailto:life@peren.ai" class="underline hover:text-gray-600">life@peren.ai</a>'
+        }
+      ]
+    },
   },
 }
-

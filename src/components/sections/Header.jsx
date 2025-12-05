@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import clsx from 'clsx'
 import Container from '../layout/Container'
 import { useLanguage } from '../../contexts/LanguageContext'
@@ -77,21 +78,21 @@ const LanguageToggle = ({ className, mobile = false }) => {
         >
           <div className="flex flex-col gap-1">
             {languages.map((lang) => (
-                <button
+              <button
                 key={lang.code}
-                  onClick={() => handleLanguageSelect(lang.code)}
-                  className={clsx(
+                onClick={() => handleLanguageSelect(lang.code)}
+                className={clsx(
                   'w-full px-4 py-2.5 text-xs font-medium tracking-widest text-left rounded-xl transition-all duration-200 flex items-center justify-between group',
                   language === lang.code
                     ? 'bg-white text-black'
                     : 'text-white/60 hover:text-white hover:bg-white/5'
-                  )}
-                >
-                  {lang.name}
+                )}
+              >
+                {lang.name}
                 {language === lang.code && (
                   <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
                 )}
-                </button>
+              </button>
             ))}
           </div>
         </div>
@@ -101,21 +102,29 @@ const LanguageToggle = ({ className, mobile = false }) => {
 }
 
 const LogoMark = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const handleLogoClick = () => {
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      navigate('/')
+      window.scrollTo(0, 0)
+    }
   }
 
   return (
-    <button 
-      onClick={scrollToTop}
+    <button
+      onClick={handleLogoClick}
       className="flex items-center gap-2 sm:gap-3 md:gap-4 transition-transform duration-300 hover:scale-105 cursor-pointer bg-transparent border-none outline-none"
       aria-label="Scroll to top"
     >
       <div className="relative flex items-center justify-center flex-shrink-0">
         <span className="absolute inline-flex h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 rounded-full border-2 sm:border-[3px] border-white/80 animate-pulse-slow"></span>
         <span className="relative ml-4 sm:ml-5 md:ml-6 inline-flex h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 rounded-full bg-white shadow-glow"></span>
-    </div>
-      <span 
+      </div>
+      <span
         className="text-[10px] sm:text-xs md:text-sm font-semibold tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.5em] text-peren-white whitespace-nowrap"
         style={{ color: '#FFFFFF' }}
       >
@@ -148,6 +157,8 @@ const Header = () => {
   const menuRef = useRef(null)
   const { language } = useLanguage()
   const t = translations[language]
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const navLinks = [
     { label: t.nav.whyPeren, href: '#why' },
@@ -158,8 +169,27 @@ const Header = () => {
   ]
 
   const handleNavClick = (e, href) => {
-    e.stopPropagation() // Prevent click-outside from triggering
-    
+    e.preventDefault()
+    e.stopPropagation()
+
+    const targetId = href.replace('#', '')
+
+    if (location.pathname === '/') {
+      const element = document.getElementById(targetId)
+      if (element) {
+        const headerOffset = 80
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        })
+      }
+    } else {
+      navigate(`/${href}`)
+    }
+
     // Close menu after a small delay to allow navigation
     setTimeout(() => {
       setIsMenuOpen(false)
@@ -203,14 +233,34 @@ const Header = () => {
     }
   }, [isMenuOpen])
 
+  // Handle hash scrolling on page load/navigation
+  useEffect(() => {
+    if (location.hash) {
+      const targetId = location.hash.replace('#', '')
+      const element = document.getElementById(targetId)
+      if (element) {
+        setTimeout(() => {
+          const headerOffset = 80
+          const elementPosition = element.getBoundingClientRect().top
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          })
+        }, 100) // Small delay to ensure rendering
+      }
+    }
+  }, [location])
+
   return (
     <>
-      <header 
+      <header
         className="fixed top-0 left-0 right-0 z-[9999] pointer-events-none"
-        style={{ 
+        style={{
           position: 'fixed',
           top: 0,
-          left: 0, 
+          left: 0,
           right: 0,
           width: '100%',
           zIndex: 9999,
@@ -225,19 +275,19 @@ const Header = () => {
           {/* Navbar Container */}
           <nav ref={menuRef} className="relative mx-auto pointer-events-auto">
             {/* Liquid Glass Effect Container */}
-            <div 
-                className={clsx(
+            <div
+              className={clsx(
                 "relative flex items-center justify-between px-3 sm:px-5 md:px-8 py-2.5 sm:py-3 md:py-4",
                 isMenuOpen ? "rounded-[24px] sm:rounded-[32px]" : ""
               )}
-              style={{ 
+              style={{
                 // Solid black background - no transparency
                 background: '#000000',
                 // Liquid morphing border radius - smaller on mobile
                 borderRadius: isScrolled ? '12px' : '40px',
                 // Glass border effect
                 border: '1px solid rgba(255, 255, 255, 0.08)',
-                boxShadow: isScrolled 
+                boxShadow: isScrolled
                   ? '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.2)'
                   : '0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
                 // Liquid expansion - less on mobile
@@ -250,12 +300,12 @@ const Header = () => {
               }}
             >
               {/* Liquid Glass Shine Effect */}
-              <div 
+              <div
                 className="absolute inset-0 pointer-events-none overflow-hidden"
                 style={{ borderRadius: 'inherit' }}
               >
                 {/* Top highlight reflection */}
-                <div 
+                <div
                   className="absolute top-0 left-0 right-0 h-[1px]"
                   style={{
                     background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 20%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.15) 80%, transparent 100%)',
@@ -264,10 +314,10 @@ const Header = () => {
                   }}
                 />
                 {/* Liquid moving shine */}
-                <div 
+                <div
                   className="absolute inset-0"
                   style={{
-                    background: isScrolled 
+                    background: isScrolled
                       ? 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 50%)'
                       : 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(255,255,255,0.05) 0%, transparent 40%)',
                     transition: 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
@@ -294,9 +344,9 @@ const Header = () => {
                     <span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full opacity-50 group-hover:opacity-100" />
                   </a>
                 ))}
-                
+
                 <div className="h-6 w-px bg-white/80 mx-2" /> {/* Refined Separator */}
-                
+
                 <LanguageToggle />
               </div>
 
@@ -326,15 +376,15 @@ const Header = () => {
                 transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             >
-              <div 
+              <div
                 className="rounded-[24px] sm:rounded-[32px] p-4 sm:p-6 md:p-8 relative overflow-hidden"
-                style={{ 
+                style={{
                   // Solid black background - no transparency
                   background: '#000000',
                   // Glass border effect
                   border: '1px solid rgba(255, 255, 255, 0.1)',
-                  boxShadow: isMenuOpen 
-                    ? (isScrolled 
+                  boxShadow: isMenuOpen
+                    ? (isScrolled
                       ? '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.2)'
                       : '0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08)')
                     : '0 0px 0px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(255, 255, 255, 0), inset 0 -1px 0 rgba(0, 0, 0, 0)',
@@ -343,35 +393,35 @@ const Header = () => {
                 }}
               >
                 {/* Liquid Glass Shine Effect */}
-                <div 
+                <div
                   className="absolute inset-0 pointer-events-none overflow-hidden"
                   style={{ borderRadius: 'inherit' }}
                 >
                   {/* Top highlight reflection */}
-                  <div 
+                  <div
                     className="absolute top-0 left-0 right-0 h-[1px]"
                     style={{
                       background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.2) 80%, transparent 100%)',
                     }}
                   />
                   {/* Liquid moving shine */}
-                  <div 
+                  <div
                     className="absolute inset-0"
                     style={{
                       background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,255,255,0.05) 0%, transparent 50%)',
                     }}
                   />
                   {/* Bottom subtle glow */}
-                  <div 
+                  <div
                     className="absolute bottom-0 left-0 right-0 h-[1px]"
                     style={{
                       background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%)',
                     }}
                   />
                 </div>
-                
+
                 {/* Content wrapper with relative positioning */}
-                <div 
+                <div
                   className="relative z-10"
                   style={{
                     opacity: isMenuOpen ? 1 : 0,
@@ -379,50 +429,50 @@ const Header = () => {
                     transition: 'opacity 0.4s ease 0.1s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
                   }}
                 >
-                <div className="flex flex-col gap-4 sm:gap-6">
-                  {navLinks.map((item, idx) => (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      onClick={(e) => handleNavClick(e, item.href)}
-                      className="flex items-center justify-between group border-b border-white/10 pb-3 sm:pb-4 last:border-0"
-                      style={{ 
+                  <div className="flex flex-col gap-4 sm:gap-6">
+                    {navLinks.map((item, idx) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        onClick={(e) => handleNavClick(e, item.href)}
+                        className="flex items-center justify-between group border-b border-white/10 pb-3 sm:pb-4 last:border-0"
+                        style={{
+                          opacity: isMenuOpen ? 1 : 0,
+                          transform: isMenuOpen ? 'translateX(0)' : 'translateX(-10px)',
+                          transition: `opacity 0.3s ease ${isMenuOpen ? `${idx * 50 + 100}ms` : '0ms'}, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) ${isMenuOpen ? `${idx * 50 + 100}ms` : '0ms'}`,
+                          color: '#FFFFFF',
+                          borderColor: 'rgba(255,255,255,0.1)'
+                        }}
+                      >
+                        <span className="text-base sm:text-lg md:text-xl text-white font-light tracking-wider group-hover:pl-3 sm:group-hover:pl-4 transition-all duration-300">
+                          {item.label}
+                        </span>
+                        <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/20 flex items-center justify-center text-white text-sm opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                          →
+                        </span>
+                      </a>
+                    ))}
+
+                    <div
+                      className="pt-3 sm:pt-4 mt-1 sm:mt-2 border-t border-white/10 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0"
+                      style={{
+                        borderColor: 'rgba(255,255,255,0.1)',
                         opacity: isMenuOpen ? 1 : 0,
                         transform: isMenuOpen ? 'translateX(0)' : 'translateX(-10px)',
-                        transition: `opacity 0.3s ease ${isMenuOpen ? `${idx * 50 + 100}ms` : '0ms'}, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) ${isMenuOpen ? `${idx * 50 + 100}ms` : '0ms'}`,
-                        color: '#FFFFFF',
-                        borderColor: 'rgba(255,255,255,0.1)'
+                        transition: `opacity 0.3s ease ${isMenuOpen ? `${navLinks.length * 50 + 150}ms` : '0ms'}, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) ${isMenuOpen ? `${navLinks.length * 50 + 150}ms` : '0ms'}`,
                       }}
                     >
-                      <span className="text-base sm:text-lg md:text-xl text-white font-light tracking-wider group-hover:pl-3 sm:group-hover:pl-4 transition-all duration-300">
-                        {item.label}
-                      </span>
-                      <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/20 flex items-center justify-center text-white text-sm opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                        →
-                      </span>
-                    </a>
-                  ))}
-                  
-                  <div 
-                    className="pt-3 sm:pt-4 mt-1 sm:mt-2 border-t border-white/10 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0" 
-                    style={{ 
-                      borderColor: 'rgba(255,255,255,0.1)',
-                      opacity: isMenuOpen ? 1 : 0,
-                      transform: isMenuOpen ? 'translateX(0)' : 'translateX(-10px)',
-                      transition: `opacity 0.3s ease ${isMenuOpen ? `${navLinks.length * 50 + 150}ms` : '0ms'}, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) ${isMenuOpen ? `${navLinks.length * 50 + 150}ms` : '0ms'}`,
-                    }}
-                  >
-                    <span className="text-[10px] sm:text-xs uppercase tracking-widest text-white/50">Language</span>
-                    {/* Pass mobile prop to render the new mobile toggle layout */}
-                    <LanguageToggle mobile />
+                      <span className="text-[10px] sm:text-xs uppercase tracking-widest text-white/50">Language</span>
+                      {/* Pass mobile prop to render the new mobile toggle layout */}
+                      <LanguageToggle mobile />
+                    </div>
                   </div>
                 </div>
-                </div>
               </div>
-        </div>
+            </div>
           </nav>
-      </Container>
-    </header>
+        </Container>
+      </header>
     </>
   )
 }

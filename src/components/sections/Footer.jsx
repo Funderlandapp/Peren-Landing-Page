@@ -1,24 +1,25 @@
+import { Link } from 'react-router-dom'
 import Container from '../layout/Container'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../data/translations'
 import { footerContent } from '../../data/landingContent'
 
 const FooterLogo = () => (
-  <div 
+  <div
     className="flex flex-col items-center"
     style={{
       gap: 'clamp(10px, 1.5vw, 12px)'
     }}
   >
     <div className="relative flex items-center justify-center">
-      <span 
+      <span
         className="absolute inline-flex rounded-full border-2 border-black"
         style={{
           width: 'clamp(40px, 5vw, 48px)',
           height: 'clamp(40px, 5vw, 48px)'
         }}
       ></span>
-      <span 
+      <span
         className="relative rounded-full bg-black"
         style={{
           width: 'clamp(40px, 5vw, 48px)',
@@ -41,13 +42,13 @@ const SocialCard = ({ label, handle, description, icon, href }) => (
       padding: 'clamp(16px, 3vw, 24px)'
     }}
   >
-    <div 
+    <div
       className="flex items-start justify-between"
       style={{
         gap: 'clamp(8px, 2vw, 16px)'
       }}
     >
-      <p 
+      <p
         className="font-semibold text-gray-900"
         style={{
           fontSize: 'clamp(13px, 1.6vw, 16px)'
@@ -55,7 +56,7 @@ const SocialCard = ({ label, handle, description, icon, href }) => (
       >
         {label}
       </p>
-      <p 
+      <p
         className="text-gray-600"
         style={{
           fontSize: 'clamp(11px, 1.4vw, 14px)'
@@ -65,7 +66,7 @@ const SocialCard = ({ label, handle, description, icon, href }) => (
       </p>
     </div>
     {description && (
-      <p 
+      <p
         className="font-medium text-gray-900"
         style={{
           marginTop: 'clamp(12px, 2vw, 16px)',
@@ -76,22 +77,22 @@ const SocialCard = ({ label, handle, description, icon, href }) => (
       </p>
     )}
     {icon && (
-      <div 
+      <div
         className="flex flex-1 items-center justify-center"
         style={{
           marginTop: 'clamp(24px, 4vw, 32px)'
         }}
       >
-        <span 
+        <span
           className="inline-flex items-center justify-center rounded-full bg-gray-100"
           style={{
             width: 'clamp(40px, 5vw, 48px)',
             height: 'clamp(40px, 5vw, 48px)'
           }}
         >
-          <img 
-            src={icon} 
-            alt={`${label} icon`} 
+          <img
+            src={icon}
+            alt={`${label} icon`}
             className="grayscale"
             style={{
               width: 'clamp(20px, 2.5vw, 24px)',
@@ -107,19 +108,19 @@ const SocialCard = ({ label, handle, description, icon, href }) => (
 const Footer = () => {
   const { language } = useLanguage()
   const t = translations[language]
-  
+
   // Split mission text into bold and normal parts with line breaks
   const missionText = t.footer.mission
   let boldPart = ''
   let normalPart = ''
-  
+
   if (language === 'en') {
     const splitIndex = missionText.indexOf(' building')
     let boldText = missionText.substring(0, splitIndex)
     // Add line break after "designers"
     boldText = boldText.replace('designers ', 'designers\n')
     boldPart = boldText
-    
+
     let normalText = missionText.substring(splitIndex + 1)
     // Add line break after "generation"
     normalText = normalText.replace('generation ', 'generation\n')
@@ -133,7 +134,7 @@ const Footer = () => {
     boldPart = missionText
     normalPart = ''
   }
-  
+
   const socialCards = [
     {
       label: t.footer.channels.substack,
@@ -156,15 +157,14 @@ const Footer = () => {
   ]
 
   const legalItems = [
-    t.footer.legal.company,
-    t.footer.legal.research,
-    t.footer.legal.terms,
-    t.footer.legal.privacy,
+    { label: t.footer.legal.about, href: '/about' },
+    { label: t.footer.legal.privacy, href: '/privacy-policy' },
+    { label: t.footer.legal.terms, href: '/terms-of-service' },
   ]
 
   return (
-    <footer 
-      id="contact" 
+    <footer
+      id="contact"
       className="bg-white text-gray-900"
       style={{
         paddingTop: 'clamp(32px, 5vw, 56px)',
@@ -172,27 +172,27 @@ const Footer = () => {
         scrollMarginTop: 'clamp(80px, 10vh, 120px)'
       }}
     >
-      <Container 
+      <Container
         className="flex flex-col items-center text-center"
         style={{
           gap: 'clamp(32px, 6vw, 48px)'
         }}
       >
         {/* Top Section: Large Black Rounded Rectangle */}
-        <div 
+        <div
           className="w-full bg-black"
           style={{
             borderRadius: 'clamp(40px, 6vw, 60px)',
             padding: 'clamp(40px, 8vw, 80px) clamp(16px, 4vw, 48px)'
           }}
         >
-          <div 
+          <div
             className="flex flex-col items-center text-center text-white"
             style={{
               gap: 'clamp(16px, 3vw, 24px)'
             }}
           >
-            <h2 
+            <h2
               className="font-normal text-white"
               style={{
                 fontSize: 'clamp(16px, 2.2vw, 24px)'
@@ -200,7 +200,7 @@ const Footer = () => {
             >
               PEREN AI
             </h2>
-            <p 
+            <p
               className="max-w-3xl leading-tight text-white whitespace-pre-line px-2"
               style={{
                 fontSize: 'clamp(18px, 3.5vw, 36px)'
@@ -228,14 +228,14 @@ const Footer = () => {
         </div>
 
         {/* Middle Section: Logo and Slogan */}
-        <div 
+        <div
           className="flex flex-col items-center px-4"
           style={{
             gap: 'clamp(16px, 3vw, 24px)'
           }}
         >
           <FooterLogo />
-          <p 
+          <p
             className="italic text-black"
             style={{
               fontSize: 'clamp(18px, 3.5vw, 36px)'
@@ -246,7 +246,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section: Social Cards */}
-        <div 
+        <div
           className="grid w-full md:grid-cols-3"
           style={{
             gap: 'clamp(16px, 3vw, 24px)'
@@ -258,7 +258,7 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom: Copyright and Legal Links */}
-        <div 
+        <div
           className="text-gray-700 px-4"
           style={{
             display: 'flex',
@@ -268,21 +268,23 @@ const Footer = () => {
           }}
         >
           <p>{t.footer.copyright}</p>
-          <div 
+          <div
             className="flex flex-wrap items-center justify-center"
             style={{
               gap: 'clamp(4px, 1vw, 8px)'
             }}
           >
             {legalItems.map((item, index) => (
-              <span 
-                key={item} 
+              <span
+                key={item.label}
                 className="flex items-center uppercase tracking-wider"
                 style={{
                   gap: 'clamp(4px, 1vw, 8px)'
                 }}
               >
-                <span>{item}</span>
+                <Link to={item.href} className="hover:underline hover:text-gray-900 transition-colors">
+                  {item.label}
+                </Link>
                 {index < legalItems.length - 1 && <span className="text-gray-500">-</span>}
               </span>
             ))}
