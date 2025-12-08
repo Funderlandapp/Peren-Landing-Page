@@ -208,7 +208,7 @@ const Header = () => {
   // Close menu on resize if moving to desktop
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024 && isMenuOpen) {
+      if (window.innerWidth >= 1250 && isMenuOpen) {
         setIsMenuOpen(false)
       }
     }
@@ -331,7 +331,7 @@ const Header = () => {
               </div>
 
               {/* Desktop Links & Language */}
-              <div className="hidden lg:flex items-center gap-6 ml-auto pr-2">
+              <div className="hidden min-[1250px]:flex items-center gap-6 ml-auto pr-2">
                 {navLinks.map((item) => (
                   <a
                     key={item.href}
@@ -354,7 +354,7 @@ const Header = () => {
               <button
                 type="button"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="lg:hidden flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300 group z-50"
+                className="min-[1250px]:hidden flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300 group z-50"
                 aria-label="Toggle menu"
                 aria-expanded={isMenuOpen}
                 style={{ color: '#FFFFFF', borderColor: 'rgba(255,255,255,0.2)' }}
